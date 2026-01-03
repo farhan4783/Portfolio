@@ -32,7 +32,7 @@ const Navbar = () => {
                         <a href="#contact" onClick={toggleMenu}>Contact</a>
                     </li>
                     <li className="nav-item social-icons">
-                        <a href="https://github.com" target="_blank" rel="noreferrer"><FaGithub /></a>
+                        <a href="https://github.com/farhan4783" target="_blank" rel="noreferrer"><FaGithub /></a>
                         {/* Add more social links here */}
                     </li>
                 </ul>
