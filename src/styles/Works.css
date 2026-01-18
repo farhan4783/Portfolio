@@ -1,0 +1,166 @@
+/* Works.css */
+
+.works-header p {
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.works-header h2 {
+    color: var(--text-primary);
+    font-size: 60px;
+    font-weight: 900;
+}
+
+.works-description {
+    margin-top: 0.75rem;
+    color: var(--text-secondary);
+    font-size: 17px;
+    line-height: 30px;
+    max-width: 800px;
+}
+
+.works-container {
+    margin-top: 5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.75rem;
+    justify-content: center;
+}
+
+.project-card-wrapper {
+    width: 100%;
+    max-width: 360px;
+}
+
+.featured-card {
+    width: 100%;
+    background: rgba(17, 12, 46, 0.7);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    position: relative;
+}
+
+.featured-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.featured-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px -10px rgba(0, 242, 255, 0.2);
+    border-color: rgba(0, 242, 255, 0.3);
+}
+
+.featured-image-container {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.featured-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.featured-card:hover .featured-image {
+    transform: scale(1.1);
+}
+
+.card-img_hover {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    z-index: 10;
+}
+
+.featured-github-icon {
+    background: rgba(0, 0, 0, 0.6);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+}
+
+.featured-github-icon:hover {
+    background: var(--text-primary);
+    transform: scale(1.1);
+}
+
+.featured-github-icon:hover svg {
+    fill: black !important;
+    color: black !important;
+}
+
+.featured-content {
+    flex-grow: 1;
+    padding: 0 0.5rem;
+    z-index: 1;
+}
+
+.featured-title {
+    color: var(--text-primary);
+    font-size: 26px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #fff, #aaa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.featured-description {
+    color: var(--text-secondary);
+    margin-top: 0.75rem;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.tags-container {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 0 0.5rem;
+}
+
+.tag-text {
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    transition: background 0.2s ease;
+}
+
+.tag-text:hover {
+    background: rgba(255, 255, 255, 0.1);
+}

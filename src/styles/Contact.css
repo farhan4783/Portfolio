@@ -1,0 +1,130 @@
+.contact-section {
+    padding: 0;
+    margin: 0;
+}
+
+.contact-page-wrapper {
+    /* Override SectionWrapper defaults to allow full width */
+    padding: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+.contact-container {
+    width: 100%;
+    /* Ensure internal container uses full width */
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    /* Remove gap for full seamless look */
+    overflow: hidden;
+}
+
+/* Desktop Styles */
+/* Desktop Styles */
+/* Desktop Styles */
+@media (min-width: 1024px) {
+    .contact-container {
+        flex-direction: row;
+        align-items: center;
+        /* vertical alignment */
+        gap: 2rem;
+        overflow: hidden;
+    }
+}
+
+.contact-form-container {
+    flex: 0.75;
+    background: #100d25;
+    padding: 3rem;
+    border-radius: 20px;
+}
+
+.contact-earth-container {
+    flex: 1;
+    height: 350px;
+    /* Default height for mobile */
+}
+
+@media (min-width: 1024px) {
+    .contact-earth-container {
+        height: 550px;
+        /* Height for desktop */
+    }
+}
+
+
+
+.contact-text-secondary {
+    color: #aaa6c3;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.contact-head-text {
+    color: white;
+    font-weight: 900;
+    font-size: 40px;
+}
+
+.contact-form {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.contact-label {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-label-text {
+    color: white;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.contact-input {
+    background: #151030;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    color: white;
+    outline: none;
+    font-weight: 500;
+    width: 100%;
+    /* Ensure input fills the label/container */
+}
+
+.contact-submit-btn {
+    background: #151030;
+    padding: 0.75rem 2rem;
+    border-radius: 0.75rem;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    width: fit-content;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-icon {
+    color: white;
+    font-size: 2.5rem;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.social-icon:hover {
+    color: var(--accent-primary, #00f2ff);
+    transform: translateY(-3px);
+    opacity: 1;
+}

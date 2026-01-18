@@ -1,0 +1,220 @@
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10%;
+    background: radial-gradient(circle at top right, rgba(0, 242, 255, 0.05), transparent 40%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 600px;
+    z-index: 2;
+}
+
+.hero-greeting {
+    font-size: 1.5rem;
+    color: var(--accent-primary);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.hero-name {
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+}
+
+.gradient-text {
+    background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.cursor {
+    display: inline-block;
+    color: var(--accent-secondary);
+    animation: blink 1s step-end infinite;
+    font-weight: 200;
+    margin-left: 5px;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+    line-height: 1.8;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: white;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 242, 255, 0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(112, 0, 255, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    backdrop-filter: blur(5px);
+}
+
+.btn-secondary:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    background: rgba(0, 242, 255, 0.05);
+}
+
+/* Right Side - Hero Image Area */
+.hero-image {
+    position: relative;
+    flex: 1;
+    height: 100%;
+    min-height: 600px;
+    /* Ensure minimum space */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.tech-shape-container {
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    position: relative;
+}
+
+/* Floating Icons Container */
+.floating-icons-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.floating-icon {
+    position: absolute;
+    font-size: 3rem;
+    filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5));
+}
+
+.icon-react {
+    color: #61dafb;
+    top: 15%;
+    right: 15%;
+}
+
+.icon-python {
+    color: #3776ab;
+    bottom: 25%;
+    right: 10%;
+    font-size: 2.5rem;
+}
+
+.icon-js {
+    color: #f7df1e;
+    bottom: 35%;
+    left: 10%;
+    font-size: 2.8rem;
+}
+
+/* Background Gradient Orb */
+.circle-gradient {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.15;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+@media screen and (max-width: 1024px) {
+    .hero {
+        padding: 0 5%;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding-top: 80px;
+    }
+
+    .hero-content {
+        margin-bottom: 2rem;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .hero-name {
+        font-size: 3rem;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-image {
+        width: 100%;
+        height: 400px;
+    }
+
+    .tech-shape-container {
+        transform: scale(0.8);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .hero-name {
+        font-size: 2.5rem;
+    }
+
+    .hero-greeting {
+        font-size: 1.2rem;
+    }
+
+    .floating-icon {
+        font-size: 2rem;
+    }
+}
