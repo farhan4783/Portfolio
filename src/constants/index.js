@@ -77,7 +77,7 @@ export const projects = [
             },
         ],
         image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-        source_code_link: "https://github.com/farhan4783/NeuroStock",
+        source_code_link: "https://github.com/farhan4783/Stock_market_predictor",
         category: "AI/ML",
         featured: true
     },
