@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Tilt from "react-parallax-tilt";
 import { motion } from "framer-motion";
 
 import SectionWrapper from "../hoc/SectionWrapper";
 import { projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaStar } from 'react-icons/fa';
+import ProjectFilter from './ProjectFilter';
 import '../styles/Works.css';
 
 const ProjectCard = ({
@@ -15,6 +16,7 @@ const ProjectCard = ({
     tags,
     image,
     source_code_link,
+    featured
 }) => {
     return (
         <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
@@ -26,6 +28,11 @@ const ProjectCard = ({
                 }}
                 className='featured-card p-5'
             >
+                {featured && (
+                    <div className="featured-badge">
+                        <FaStar /> Featured
+                    </div>
+                )}
                 <div className='featured-image-container relative w-full h-[230px]'>
                     <img
                         src={image}
@@ -64,6 +71,20 @@ const ProjectCard = ({
 };
 
 const Works = () => {
+    const [activeCategory, setActiveCategory] = useState('All');
+    const [searchQuery, setSearchQuery] = useState('');
+
+    // Get unique categories
+    const categories = [...new Set(projects.map(project => project.category))];
+
+    // Filter projects
+    const filteredProjects = projects.filter(project => {
+        const matchesCategory = activeCategory === 'All' || project.category === activeCategory;
+        const matchesSearch = project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            project.description.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+    });
+
     return (
         <>
             <motion.div variants={textVariant()} className="works-header">
@@ -76,23 +97,46 @@ const Works = () => {
                     variants={fadeIn("", "", 0.1, 1)}
                     className='works-description mt-3'
                 >
-                    Following projects showcases my skills and experience through
+                    Following projects showcase my skills and experience through
                     real-world examples of my work. Each project is briefly described with
-                    links to code repositories and live demos in it. It reflects my
+                    links to code repositories. It reflects my
                     ability to solve complex problems, work with different technologies,
                     and manage projects effectively.
                 </motion.p>
             </div>
 
+            <ProjectFilter
+                categories={categories}
+                activeCategory={activeCategory}
+                onFilterChange={setActiveCategory}
+            />
+
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Search projects..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="search-input"
+                />
+            </div>
+
             <div className='works-container mt-20'>
-                {projects.map((project, index) => (
-                    <div key={`project-${index}`} className="project-card-wrapper">
-                        <ProjectCard index={index} {...project} />
+                {filteredProjects.length > 0 ? (
+                    filteredProjects.map((project, index) => (
+                        <div key={`project-${index}`} className="project-card-wrapper">
+                            <ProjectCard index={index} {...project} />
+                        </div>
+                    ))
+                ) : (
+                    <div className="no-results">
+                        <p>No projects found matching your criteria.</p>
                     </div>
-                ))}
+                )}
             </div>
         </>
     );
 };
 
 export default SectionWrapper(Works, "works");
+

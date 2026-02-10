@@ -1,10 +1,16 @@
 import { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import CurrentWorks from './components/CurrentWorks'
+import About from './components/About'
+import Statistics from './components/Statistics'
 import Works from './components/Works'
+import Experience from './components/Experience'
 import Skills from './components/Skills'
+import Achievements from './components/Achievements'
+import CurrentWorks from './components/CurrentWorks'
 import Contact from './components/Contact'
+import ScrollProgress from './components/ScrollProgress'
+import Preloader from './components/Preloader'
 import { StarsCanvas } from './components/canvas';
 import './App.css'
 import './styles/animations.css'
@@ -19,25 +25,35 @@ const Footer = () => (
     position: 'relative',
     zIndex: 10
   }}>
-    <p>© 2026 Crafted with React & ❤️</p>
+    <p>© 2026 Mohd Farhan | Crafted with React & ❤️</p>
   </footer>
 )
 
 function App() {
   return (
-    <div className="app-container">
-      <div className="canvas-wrapper">
-        <StarsCanvas />
+    <>
+      <Preloader />
+      <div className="app-container">
+        <ScrollProgress />
+        <div className="canvas-wrapper">
+          <StarsCanvas />
+        </div>
+        <Navbar />
+        <Hero />
+        <About />
+        <Statistics />
+        <Works />
+        <Experience />
+        <Skills />
+        <Achievements />
+        <CurrentWorks />
+        <Contact />
+        <Footer />
       </div>
-      <Navbar />
-      <Hero />
-      <Works />
-      <CurrentWorks />
-      <Skills />
-      <Contact />
-      <Footer />
-    </div>
+    </>
   )
 }
 
 export default App
+
+

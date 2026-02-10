@@ -23,13 +23,19 @@ const Navbar = () => {
                         <a href="#home" onClick={toggleMenu}>Home</a>
                     </li>
                     <li className="nav-item">
-                        <a href="#works" onClick={toggleMenu}>Work</a>
+                        <a href="#about" onClick={toggleMenu}>About</a>
                     </li>
                     <li className="nav-item">
-                        <a href="#current-works" onClick={toggleMenu}>Current</a>
+                        <a href="#works" onClick={toggleMenu}>Projects</a>
+                    </li>
+                    <li className="nav-item">
+                        <a href="#experience" onClick={toggleMenu}>Experience</a>
                     </li>
                     <li className="nav-item">
                         <a href="#skills" onClick={toggleMenu}>Skills</a>
+                    </li>
+                    <li className="nav-item">
+                        <a href="#achievements" onClick={toggleMenu}>Achievements</a>
                     </li>
                     <li className="nav-item">
                         <a href="#contact" onClick={toggleMenu}>Contact</a>
