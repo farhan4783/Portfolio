@@ -19,20 +19,75 @@
     text-align: center;
     color: var(--text-secondary);
     font-size: 1.125rem;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
 }
 
-.skill-category {
-    margin-bottom: 4rem;
+/* Tab Navigation */
+.skills-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
 }
 
-.category-title {
-    font-size: 1.5rem;
-    font-weight: 600;
+.skill-tab {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 1rem 2rem;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-tab::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.skill-tab:hover {
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 242, 255, 0.2);
+}
+
+.skill-tab.active {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    border-color: transparent;
     color: var(--text-primary);
-    margin-bottom: 2rem;
-    padding-left: 1rem;
-    border-left: 4px solid var(--accent-primary);
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(0, 242, 255, 0.3);
+}
+
+.skill-tab.active::before {
+    opacity: 1;
+}
+
+.tab-icon {
+    font-size: 1.5rem;
+}
+
+.tab-text {
+    white-space: nowrap;
+}
+
+/* Tab Content */
+.skills-tab-content {
+    min-height: 400px;
 }
 
 .skills-container {
@@ -148,11 +203,29 @@
 
     .skills-subtitle {
         font-size: 1rem;
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
     }
 
-    .category-title {
+    .skills-tabs {
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+    }
+
+    .skill-tab {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.875rem;
+    }
+
+    .tab-icon {
         font-size: 1.25rem;
+    }
+
+    .tab-text {
+        font-size: 0.875rem;
+    }
+
+    .skills-tab-content {
+        min-height: 350px;
     }
 
     .skills-container {
@@ -174,6 +247,20 @@
 }
 
 @media (max-width: 480px) {
+    .skills-tabs {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .skill-tab {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .skills-tab-content {
+        min-height: 300px;
+    }
+
     .skills-container {
         grid-template-columns: 1fr;
     }
