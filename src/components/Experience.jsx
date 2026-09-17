@@ -11,7 +11,7 @@ const Experience = () => {
             year: "2023 - Present",
             title: "B.Tech in Computer Science",
             institution: "IILM University, Greater Noida",
-            description: "Currently in 3rd year, focusing on AI/ML, Data Structures, Algorithms, and Full Stack Development. Building innovative projects and exploring cutting-edge technologies.",
+            description: "Currently in 4th year, focusing on AI/ML, Data Structures, Algorithms, and Full Stack Development. Building innovative projects and exploring cutting-edge technologies.",
             icon: <FaGraduationCap />,
             type: "education"
         },
