@@ -135,6 +135,21 @@
     background: rgba(0, 242, 255, 0.05);
 }
 
+.btn-resume {
+    background: rgba(0, 242, 255, 0.08);
+    border: 1px solid rgba(0, 242, 255, 0.4);
+    color: var(--accent-primary);
+    box-shadow: 0 4px 15px rgba(0, 242, 255, 0.15);
+}
+
+.btn-resume:hover {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: white;
+    border-color: transparent;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 242, 255, 0.4);
+}
+
 /* Social Links */
 .hero-social-links {
     display: flex;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaGithub, FaLinkedin, FaBars, FaTimes } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaBars, FaTimes, FaDownload } from 'react-icons/fa';
 import '../styles/Navbar.css';
 
 const Navbar = () => {
@@ -15,6 +15,8 @@ const Navbar = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const resumeUrl = `${import.meta.env.BASE_URL}Mohd_Farhan.pdf`;
 
     return (
         <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
@@ -48,6 +50,19 @@ const Navbar = () => {
                     </li>
                     <li className="nav-item">
                         <a href="#contact" onClick={toggleMenu}>Contact</a>
+                    </li>
+                    <li className="nav-item">
+                        <a
+                            href={resumeUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            download="Mohd_Farhan_Resume.pdf"
+                            className="nav-resume-btn"
+                            onClick={toggleMenu}
+                        >
+                            <FaDownload style={{ marginRight: '6px', fontSize: '0.8rem' }} />
+                            Resume
+                        </a>
                     </li>
                     <li className="nav-item social-icons">
                         <a href="https://github.com/farhan4783" target="_blank" rel="noreferrer"><FaGithub /></a>

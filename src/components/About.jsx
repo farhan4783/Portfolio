@@ -1,31 +1,28 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaCode, FaRobot, FaServer, FaLightbulb } from 'react-icons/fa';
+import { FaCode, FaRobot, FaServer, FaDownload } from 'react-icons/fa';
 import SectionWrapper from '../hoc/SectionWrapper';
 import { fadeIn, textVariant } from '../utils/motion';
 import '../styles/About.css';
 
 const About = () => {
+    const resumeUrl = `${import.meta.env.BASE_URL}Mohd_Farhan.pdf`;
+
     const highlights = [
         {
             icon: <FaCode />,
             title: "Problem Solver",
-            description: "Building things from zero, experimenting and learning how systems actually work"
+            description: "Building systems from first principles, mastering DSA, and engineering robust software that scales."
         },
         {
             icon: <FaRobot />,
             title: "AI & Automation",
-            description: "Creating intelligent solutions that save time and reduce manual work"
+            description: "Creating intelligent solutions, deep learning models, and autonomous LLM agents that eliminate manual work."
         },
         {
             icon: <FaServer />,
             title: "Backend Developer",
-            description: "Designing scalable systems where logic meets real-world impact"
-        },
-        {
-            icon: <FaLightbulb />,
-            title: "Continuous Learner",
-            description: "Constantly exploring new tools and simplifying complex problems"
+            description: "Architecting high-performance APIs and distributed systems with Python, Django, FastAPI, and modern tech."
         }
     ];
 
@@ -55,13 +52,20 @@ const About = () => {
                 solutions that feel smart and intentional.
             </motion.p>
 
-            <motion.p
+            <motion.div
                 variants={fadeIn("", "", 0.3, 1)}
-                className="about-description"
+                className="about-cta-row"
             >
-                Outside of building projects, I'm constantly learning, exploring new tools, and thinking about
-                how technology can simplify complex problems.
-            </motion.p>
+                <a
+                    href={resumeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="about-resume-btn"
+                >
+                    <FaDownload style={{ marginRight: '8px' }} />
+                    Download Resume (PDF)
+                </a>
+            </motion.div>
 
             <div className="highlights-grid">
                 {highlights.map((highlight, index) => (

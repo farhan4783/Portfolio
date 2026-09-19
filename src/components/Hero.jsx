@@ -32,6 +32,8 @@ const Hero = () => {
         return () => clearTimeout(timer);
     }, [displayedRole, isDeleting, roleIndex, roles]);
 
+    const resumeUrl = `${import.meta.env.BASE_URL}Mohd_Farhan.pdf`;
+
     return (
         <section className="hero" id="home">
             <div className="hero-content">
@@ -83,6 +85,16 @@ const Hero = () => {
                     <a href="#works" className="btn btn-primary">
                         <FaBrain style={{ marginRight: '8px' }} />
                         View AI Projects
+                    </a>
+                    <a
+                        href={resumeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        download="Mohd_Farhan_Resume.pdf"
+                        className="btn btn-resume"
+                    >
+                        <FaDownload style={{ marginRight: '8px' }} />
+                        Resume
                     </a>
                     <a href="#contact" className="btn btn-secondary">Contact Me</a>
                 </motion.div>

@@ -31,6 +31,15 @@ const Footer = () => {
                             <a href="#skills">Skills</a>
                             <a href="#achievements">Achievements</a>
                             <a href="#contact">Contact</a>
+                            <a
+                                href={`${import.meta.env.BASE_URL}Mohd_Farhan.pdf`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                download="Mohd_Farhan_Resume.pdf"
+                                style={{ color: 'var(--accent-primary)', fontWeight: 600 }}
+                            >
+                                Resume (PDF)
+                            </a>
                         </div>
                     </div>
 

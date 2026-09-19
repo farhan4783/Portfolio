@@ -1,13 +1,12 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
-import { FaGithub, FaLinkedin, FaEnvelope, FaPaperPlane } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaPaperPlane, FaWhatsapp, FaPhoneAlt, FaUser, FaCommentDots, FaCopy, FaCheck } from "react-icons/fa";
 import Toast from './Toast';
 import '../styles/Contact.css';
 
 import { EarthCanvas } from "./canvas";
 import SectionWrapper from "../hoc/SectionWrapper";
-import { slideIn } from "../utils/motion";
+import { fadeIn } from "../utils/motion";
 
 const Contact = () => {
     const formRef = useRef();
@@ -19,6 +18,11 @@ const Contact = () => {
 
     const [loading, setLoading] = useState(false);
     const [toast, setToast] = useState({ visible: false, message: '', type: 'success' });
+    const [copiedEmail, setCopiedEmail] = useState(false);
+
+    const email = "mohdfarhan4002@gmail.com";
+    const phone = "+91 9599372101";
+    const phoneRaw = "919599372101";
 
     const handleChange = (e) => {
         const { target } = e;
@@ -38,7 +42,14 @@ const Contact = () => {
         setToast({ ...toast, visible: false });
     };
 
-    const handleSubmit = (e) => {
+    const copyEmail = () => {
+        navigator.clipboard.writeText(email);
+        setCopiedEmail(true);
+        showToast('Email address copied to clipboard!', 'success');
+        setTimeout(() => setCopiedEmail(false), 2500);
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         // Validation
@@ -47,7 +58,6 @@ const Contact = () => {
             return;
         }
 
-        // Basic email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(form.email)) {
             showToast('Please enter a valid email address.', 'error');
@@ -56,59 +66,62 @@ const Contact = () => {
 
         setLoading(true);
 
-        // EmailJS integration
-        // To activate: Replace these with your actual EmailJS credentials
-        // 1. Sign up at https://www.emailjs.com/
-        // 2. Create a service, template, and get your public key
-        // 3. Replace the values below
-        const SERVICE_ID = 'YOUR_SERVICE_ID';
-        const TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-        const PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+        try {
+            const response = await fetch(`https://formsubmit.co/ajax/${email}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({
+                    name: form.name,
+                    email: form.email,
+                    message: form.message,
+                    _subject: `New Portfolio Message from ${form.name}`,
+                    _template: "table",
+                    _captcha: "false"
+                })
+            });
 
-        if (SERVICE_ID === 'YOUR_SERVICE_ID') {
-            // Demo mode — simulate sending
-            setTimeout(() => {
-                setLoading(false);
-                showToast('Thank you! Your message has been sent. I\'ll get back to you soon.', 'success');
-                setForm({ name: "", email: "", message: "" });
-            }, 1500);
-            return;
-        }
+            const result = await response.json();
 
-        emailjs.send(
-            SERVICE_ID,
-            TEMPLATE_ID,
-            {
-                from_name: form.name,
-                to_name: "Mohd Farhan",
-                from_email: form.email,
-                to_email: "your-email@example.com",
-                message: form.message,
-            },
-            PUBLIC_KEY
-        ).then(
-            () => {
-                setLoading(false);
-                showToast('Thank you! Your message has been sent. I\'ll get back to you soon.', 'success');
+            if (response.ok || result.success === "true" || result.success === true) {
+                showToast(`Thank you ${form.name}! Your message has been sent to Farhan's inbox.`, 'success');
                 setForm({ name: "", email: "", message: "" });
-            },
-            (error) => {
-                setLoading(false);
-                console.error(error);
-                showToast('Something went wrong. Please try again or email me directly.', 'error');
+            } else {
+                showToast(result.message || 'Message could not be sent. Please try WhatsApp or email directly.', 'error');
             }
-        );
+        } catch (error) {
+            console.error("Form submission error:", error);
+            showToast('Network error. You can email me directly or text on WhatsApp!', 'error');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const getWhatsAppUrl = () => {
+        const text = form.message.trim()
+            ? `Hi Farhan, I am ${form.name || 'someone'} (${form.email || 'no email provided'}).\n\n${form.message}`
+            : `Hi Farhan! I came across your portfolio and would like to connect.`;
+        return `https://wa.me/${phoneRaw}?text=${encodeURIComponent(text)}`;
     };
 
     return (
         <div className="contact-container">
             <motion.div
-                variants={slideIn("left", "tween", 0.2, 1)}
+                variants={fadeIn("right", "spring", 0.1, 0.75)}
                 className='contact-form-container'
             >
-                <p className="contact-text-secondary">Get in touch</p>
+                <div className="contact-badge-chip">
+                    <span className="contact-pulse-dot"></span>
+                    <span>Ready to Collaborate</span>
+                </div>
+
                 <div className="contact-header-row">
-                    <h3 className="contact-head-text">Contact.</h3>
+                    <div>
+                        <p className="contact-text-secondary">Get in touch</p>
+                        <h3 className="contact-head-text">Contact Me.</h3>
+                    </div>
                     <div className="social-links">
                         <a href="https://github.com/farhan4783" target="_blank" rel="noopener noreferrer" className="social-icon" title="GitHub">
                             <FaGithub />
@@ -119,13 +132,48 @@ const Contact = () => {
                     </div>
                 </div>
 
+                {/* Direct Contact Cards */}
+                <div className="direct-contact-grid">
+                    <div className="contact-info-card" onClick={copyEmail} title="Click to copy email">
+                        <div className="contact-info-icon email-icon">
+                            <FaEnvelope />
+                        </div>
+                        <div className="contact-info-text">
+                            <span className="contact-info-label">Email</span>
+                            <span className="contact-info-val">{email}</span>
+                        </div>
+                        <button type="button" className="copy-btn" aria-label="Copy email">
+                            {copiedEmail ? <FaCheck color="#00f2ff" /> : <FaCopy />}
+                        </button>
+                    </div>
+
+                    <a
+                        href={`https://wa.me/${phoneRaw}?text=${encodeURIComponent("Hi Farhan! I saw your portfolio and would like to connect.")}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="contact-info-card whatsapp-card"
+                        title="Chat on WhatsApp"
+                    >
+                        <div className="contact-info-icon whatsapp-icon">
+                            <FaWhatsapp />
+                        </div>
+                        <div className="contact-info-text">
+                            <span className="contact-info-label">WhatsApp / Phone</span>
+                            <span className="contact-info-val">{phone}</span>
+                        </div>
+                    </a>
+                </div>
+
                 <form
                     ref={formRef}
                     onSubmit={handleSubmit}
                     className='contact-form'
                 >
                     <label className='contact-label'>
-                        <span className='contact-label-text'>Your Name</span>
+                        <span className='contact-label-text'>
+                            <FaUser style={{ marginRight: '6px', fontSize: '0.8rem', color: 'var(--accent-primary)' }} />
+                            Your Name
+                        </span>
                         <input
                             type='text'
                             name='name'
@@ -136,8 +184,12 @@ const Contact = () => {
                             required
                         />
                     </label>
+
                     <label className='contact-label'>
-                        <span className='contact-label-text'>Your Email</span>
+                        <span className='contact-label-text'>
+                            <FaEnvelope style={{ marginRight: '6px', fontSize: '0.8rem', color: 'var(--accent-primary)' }} />
+                            Your Email
+                        </span>
                         <input
                             type='email'
                             name='email'
@@ -148,41 +200,58 @@ const Contact = () => {
                             required
                         />
                     </label>
+
                     <label className='contact-label'>
-                        <span className='contact-label-text'>Your Message</span>
+                        <span className='contact-label-text'>
+                            <FaCommentDots style={{ marginRight: '6px', fontSize: '0.8rem', color: 'var(--accent-primary)' }} />
+                            Your Message
+                        </span>
                         <textarea
-                            rows={7}
+                            rows={5}
                             name='message'
                             value={form.message}
                             onChange={handleChange}
-                            placeholder='What would you like to discuss?'
-                            className='contact-input'
+                            placeholder='What project or role would you like to discuss?'
+                            className='contact-input contact-textarea'
                             required
                         />
                     </label>
 
-                    <button
-                        type='submit'
-                        className='contact-submit-btn'
-                        disabled={loading}
-                    >
-                        {loading ? (
-                            <>
-                                <span className="btn-spinner"></span>
-                                Sending...
-                            </>
-                        ) : (
-                            <>
-                                <FaPaperPlane style={{ marginRight: '8px' }} />
-                                Send Message
-                            </>
-                        )}
-                    </button>
+                    <div className="contact-actions">
+                        <button
+                            type='submit'
+                            className='contact-submit-btn'
+                            disabled={loading}
+                        >
+                            {loading ? (
+                                <>
+                                    <span className="btn-spinner"></span>
+                                    Sending to Farhan...
+                                </>
+                            ) : (
+                                <>
+                                    <FaPaperPlane style={{ marginRight: '8px' }} />
+                                    Send Email
+                                </>
+                            )}
+                        </button>
+
+                        <a
+                            href={getWhatsAppUrl()}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className='contact-whatsapp-btn'
+                            title="Send this message via WhatsApp"
+                        >
+                            <FaWhatsapp style={{ marginRight: '8px', fontSize: '1.2rem' }} />
+                            Chat via WhatsApp
+                        </a>
+                    </div>
                 </form>
             </motion.div>
 
             <motion.div
-                variants={slideIn("right", "tween", 0.2, 1)}
+                variants={fadeIn("left", "spring", 0.2, 0.75)}
                 className='contact-earth-container'
             >
                 <EarthCanvas />

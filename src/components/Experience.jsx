@@ -56,7 +56,13 @@ const Experience = () => {
 
     return (
         <>
-            <motion.div variants={textVariant()} className="experience-header">
+            <motion.div
+                variants={textVariant()}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.1 }}
+                className="experience-header"
+            >
                 <p className="section-subtext">My Journey</p>
                 <h2 className="section-heading">Experience & Education.</h2>
             </motion.div>
@@ -66,7 +72,10 @@ const Experience = () => {
                 {timeline.map((item, index) => (
                     <motion.div
                         key={index}
-                        variants={fadeIn("up", "spring", index * 0.2, 0.75)}
+                        variants={fadeIn(index % 2 === 0 ? "right" : "left", "spring", 0.1, 0.75)}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, amount: 0.1 }}
                         className={`timeline-item ${index % 2 === 0 ? 'timeline-left' : 'timeline-right'}`}
                     >
                         <div className="timeline-dot">

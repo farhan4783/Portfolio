@@ -93,6 +93,32 @@
     transform: translateY(-2px);
 }
 
+.nav-resume-btn {
+    display: inline-flex !important;
+    align-items: center;
+    padding: 0.45rem 1rem !important;
+    border-radius: 20px;
+    background: rgba(0, 242, 255, 0.08);
+    border: 1px solid rgba(0, 242, 255, 0.35);
+    color: var(--accent-primary) !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease !important;
+}
+
+.nav-resume-btn::after {
+    display: none !important;
+}
+
+.nav-resume-btn:hover {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: white !important;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 242, 255, 0.3);
+}
+
 .menu-icon {
     display: none;
     color: var(--text-primary);
