@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaPaperPlane } from "react-icons/fa";
+import Toast from './Toast';
 import '../styles/Contact.css';
 
 import { EarthCanvas } from "./canvas";
@@ -17,6 +18,7 @@ const Contact = () => {
     });
 
     const [loading, setLoading] = useState(false);
+    const [toast, setToast] = useState({ visible: false, message: '', type: 'success' });
 
     const handleChange = (e) => {
         const { target } = e;
@@ -28,21 +30,74 @@ const Contact = () => {
         });
     };
 
+    const showToast = (message, type = 'success') => {
+        setToast({ visible: true, message, type });
+    };
+
+    const hideToast = () => {
+        setToast({ ...toast, visible: false });
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        // Validation
+        if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+            showToast('Please fill in all fields.', 'error');
+            return;
+        }
+
+        // Basic email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(form.email)) {
+            showToast('Please enter a valid email address.', 'error');
+            return;
+        }
+
         setLoading(true);
 
-        // Placeholder for EmailJS integration
-        // Replace with your Service ID, Template ID, and Public Key
-        setTimeout(() => {
-            setLoading(false);
-            alert("Thank you. I will get back to you as soon as possible.");
-            setForm({
-                name: "",
-                email: "",
-                message: "",
-            });
-        }, 1000);
+        // EmailJS integration
+        // To activate: Replace these with your actual EmailJS credentials
+        // 1. Sign up at https://www.emailjs.com/
+        // 2. Create a service, template, and get your public key
+        // 3. Replace the values below
+        const SERVICE_ID = 'YOUR_SERVICE_ID';
+        const TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+        const PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+
+        if (SERVICE_ID === 'YOUR_SERVICE_ID') {
+            // Demo mode — simulate sending
+            setTimeout(() => {
+                setLoading(false);
+                showToast('Thank you! Your message has been sent. I\'ll get back to you soon.', 'success');
+                setForm({ name: "", email: "", message: "" });
+            }, 1500);
+            return;
+        }
+
+        emailjs.send(
+            SERVICE_ID,
+            TEMPLATE_ID,
+            {
+                from_name: form.name,
+                to_name: "Mohd Farhan",
+                from_email: form.email,
+                to_email: "your-email@example.com",
+                message: form.message,
+            },
+            PUBLIC_KEY
+        ).then(
+            () => {
+                setLoading(false);
+                showToast('Thank you! Your message has been sent. I\'ll get back to you soon.', 'success');
+                setForm({ name: "", email: "", message: "" });
+            },
+            (error) => {
+                setLoading(false);
+                console.error(error);
+                showToast('Something went wrong. Please try again or email me directly.', 'error');
+            }
+        );
     };
 
     return (
@@ -52,13 +107,13 @@ const Contact = () => {
                 className='contact-form-container'
             >
                 <p className="contact-text-secondary">Get in touch</p>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div className="contact-header-row">
                     <h3 className="contact-head-text">Contact.</h3>
                     <div className="social-links">
-                        <a href="https://github.com/farhan4783" target="_blank" rel="noopener noreferrer" className="social-icon">
+                        <a href="https://github.com/farhan4783" target="_blank" rel="noopener noreferrer" className="social-icon" title="GitHub">
                             <FaGithub />
                         </a>
-                        <a href="https://www.linkedin.com/in/mohdfarhansde" target="_blank" rel="noopener noreferrer" className="social-icon">
+                        <a href="https://www.linkedin.com/in/mohdfarhansde" target="_blank" rel="noopener noreferrer" className="social-icon" title="LinkedIn">
                             <FaLinkedin />
                         </a>
                     </div>
@@ -76,19 +131,21 @@ const Contact = () => {
                             name='name'
                             value={form.name}
                             onChange={handleChange}
-                            placeholder="What's your good name?"
+                            placeholder="What's your name?"
                             className='contact-input'
+                            required
                         />
                     </label>
                     <label className='contact-label'>
-                        <span className='contact-label-text'>Your email</span>
+                        <span className='contact-label-text'>Your Email</span>
                         <input
                             type='email'
                             name='email'
                             value={form.email}
                             onChange={handleChange}
-                            placeholder="What's your email address?"
+                            placeholder="What's your email?"
                             className='contact-input'
+                            required
                         />
                     </label>
                     <label className='contact-label'>
@@ -98,16 +155,28 @@ const Contact = () => {
                             name='message'
                             value={form.message}
                             onChange={handleChange}
-                            placeholder='What you want to say?'
+                            placeholder='What would you like to discuss?'
                             className='contact-input'
+                            required
                         />
                     </label>
 
                     <button
                         type='submit'
                         className='contact-submit-btn'
+                        disabled={loading}
                     >
-                        {loading ? "Sending..." : "Send"}
+                        {loading ? (
+                            <>
+                                <span className="btn-spinner"></span>
+                                Sending...
+                            </>
+                        ) : (
+                            <>
+                                <FaPaperPlane style={{ marginRight: '8px' }} />
+                                Send Message
+                            </>
+                        )}
                     </button>
                 </form>
             </motion.div>
@@ -118,6 +187,13 @@ const Contact = () => {
             >
                 <EarthCanvas />
             </motion.div>
+
+            <Toast
+                message={toast.message}
+                type={toast.type}
+                isVisible={toast.visible}
+                onClose={hideToast}
+            />
         </div>
     );
 };

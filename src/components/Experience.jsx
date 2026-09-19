@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGraduationCap, FaCode, FaRocket } from 'react-icons/fa';
+import { FaGraduationCap, FaCode, FaRocket, FaBrain, FaDatabase, FaServer } from 'react-icons/fa';
 import SectionWrapper from '../hoc/SectionWrapper';
 import { fadeIn, textVariant } from '../utils/motion';
 import '../styles/Experience.css';
@@ -11,23 +11,44 @@ const Experience = () => {
             year: "2023 - Present",
             title: "B.Tech in Computer Science",
             institution: "IILM University, Greater Noida",
-            description: "Currently in 4th year, focusing on AI/ML, Data Structures, Algorithms, and Full Stack Development. Building innovative projects and exploring cutting-edge technologies.",
+            description: "4th year student with specialization in AI/ML and Full Stack Development. Core coursework: Machine Learning, Deep Learning, Data Structures & Algorithms, Computer Vision, NLP.",
+            highlights: ["AI/ML Specialization", "DSA Proficiency", "Research Projects"],
             icon: <FaGraduationCap />,
             type: "education"
         },
         {
+            year: "2025",
+            title: "AI Agent & LLM Development",
+            institution: "Advanced Projects",
+            description: "Built production-grade AI agents including an autonomous Data Analyst Agent with natural language query support and an LLM-powered Code Review Assistant that catches 78% of common anti-patterns.",
+            highlights: ["LLM Integration", "AI Agents", "Production Deployment"],
+            icon: <FaBrain />,
+            type: "project"
+        },
+        {
             year: "2024",
-            title: "AI/ML Project Development",
-            institution: "Personal Projects",
-            description: "Developed multiple AI-powered applications including Customer Churn Prediction, AI Code Review Assistant, and AI Data Analyst Agent using Python, TensorFlow, and Scikit-learn.",
+            title: "Deep Learning & ML Engineering",
+            institution: "Research & Development",
+            description: "Developed LSTM-based Stock Market Predictor achieving 87.3% directional accuracy. Built Customer Churn Prediction system with 92% recall using ensemble methods and SHAP explainability.",
+            highlights: ["LSTM Networks", "87.3% Accuracy", "SHAP Explainability"],
             icon: <FaRocket />,
+            type: "project"
+        },
+        {
+            year: "2024",
+            title: "Recommendation Systems & Data Science",
+            institution: "AI/ML Projects",
+            description: "Engineered a hybrid Movie Recommendation System using SVD matrix factorization and TF-IDF content analysis, solving the cold-start problem with a 34% error reduction over baseline approaches.",
+            highlights: ["SVD & TF-IDF", "Hybrid Models", "Cold-Start Solution"],
+            icon: <FaDatabase />,
             type: "project"
         },
         {
             year: "2023 - 2024",
             title: "Full Stack Development",
-            institution: "Self-Learning & Projects",
-            description: "Built production-ready applications including Chess Platform with AI opponents, Movie Recommendation System, and Stock Market Predictor. Mastered React, TypeScript, Django, and FastAPI.",
+            institution: "Web & Mobile Projects",
+            description: "Built a real-time multiplayer Chess Platform with Stockfish AI integration using TypeScript and Bun. Mastered React, Django, FastAPI, and Flutter for end-to-end application development.",
+            highlights: ["React & TypeScript", "Django & FastAPI", "Real-time Systems"],
             icon: <FaCode />,
             type: "project"
         }
@@ -45,7 +66,7 @@ const Experience = () => {
                 {timeline.map((item, index) => (
                     <motion.div
                         key={index}
-                        variants={fadeIn("up", "spring", index * 0.3, 0.75)}
+                        variants={fadeIn("up", "spring", index * 0.2, 0.75)}
                         className={`timeline-item ${index % 2 === 0 ? 'timeline-left' : 'timeline-right'}`}
                     >
                         <div className="timeline-dot">
@@ -58,6 +79,15 @@ const Experience = () => {
                             <h3 className="timeline-title">{item.title}</h3>
                             <p className="timeline-institution">{item.institution}</p>
                             <p className="timeline-description">{item.description}</p>
+                            {item.highlights && (
+                                <div className="timeline-highlights">
+                                    {item.highlights.map((highlight, i) => (
+                                        <span key={i} className="timeline-highlight-tag">
+                                            {highlight}
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </motion.div>
                 ))}

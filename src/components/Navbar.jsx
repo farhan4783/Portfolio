@@ -1,18 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaGithub, FaLinkedin, FaBars, FaTimes } from 'react-icons/fa';
 import '../styles/Navbar.css';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
 
     const toggleMenu = () => setIsOpen(!isOpen);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
-        <nav className="navbar">
+        <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
             <div className="navbar-container">
-                <div className="logo">
-                    Portfolio<span className="dot">.</span>
-                </div>
+                <a href="#home" className="logo">
+                    Farhan<span className="dot">.AI</span>
+                </a>
 
                 <div className="menu-icon" onClick={toggleMenu}>
                     {isOpen ? <FaTimes /> : <FaBars />}
@@ -26,6 +35,9 @@ const Navbar = () => {
                         <a href="#about" onClick={toggleMenu}>About</a>
                     </li>
                     <li className="nav-item">
+                        <a href="#ai-playground" onClick={toggleMenu}>AI Lab</a>
+                    </li>
+                    <li className="nav-item">
                         <a href="#works" onClick={toggleMenu}>Projects</a>
                     </li>
                     <li className="nav-item">
@@ -35,14 +47,11 @@ const Navbar = () => {
                         <a href="#skills" onClick={toggleMenu}>Skills</a>
                     </li>
                     <li className="nav-item">
-                        <a href="#achievements" onClick={toggleMenu}>Achievements</a>
-                    </li>
-                    <li className="nav-item">
                         <a href="#contact" onClick={toggleMenu}>Contact</a>
                     </li>
                     <li className="nav-item social-icons">
                         <a href="https://github.com/farhan4783" target="_blank" rel="noreferrer"><FaGithub /></a>
-                        {/* Add more social links here */}
+                        <a href="https://www.linkedin.com/in/mohdfarhansde" target="_blank" rel="noreferrer"><FaLinkedin /></a>
                     </li>
                 </ul>
             </div>

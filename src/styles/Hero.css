@@ -4,7 +4,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 10%;
-    background: radial-gradient(circle at top right, rgba(0, 242, 255, 0.05), transparent 40%);
+    background: radial-gradient(circle at top right, rgba(0, 242, 255, 0.05), transparent 40%),
+                radial-gradient(circle at bottom left, rgba(112, 0, 255, 0.03), transparent 40%);
     position: relative;
     overflow: hidden;
 }
@@ -12,6 +13,37 @@
 .hero-content {
     max-width: 600px;
     z-index: 2;
+}
+
+/* Status Badge */
+.hero-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    background: rgba(0, 242, 255, 0.08);
+    border: 1px solid rgba(0, 242, 255, 0.2);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    color: var(--accent-primary);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #00ff88;
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse-dot 2s ease-in-out infinite;
+    box-shadow: 0 0 8px rgba(0, 255, 136, 0.6);
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
 }
 
 .hero-greeting {
@@ -26,6 +58,7 @@
     line-height: 1.1;
     margin-bottom: 1.5rem;
     font-weight: 800;
+    min-height: 5rem;
 }
 
 .gradient-text {
@@ -52,7 +85,7 @@
 .hero-description {
     font-size: 1.1rem;
     color: var(--text-secondary);
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
     max-width: 500px;
     line-height: 1.8;
 }
@@ -60,6 +93,8 @@
 .hero-buttons {
     display: flex;
     gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
 }
 
 .btn {
@@ -68,9 +103,10 @@
     font-weight: 600;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     text-transform: uppercase;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     letter-spacing: 1px;
 }
 
@@ -99,13 +135,40 @@
     background: rgba(0, 242, 255, 0.05);
 }
 
+/* Social Links */
+.hero-social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.hero-social-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.hero-social-icon:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 242, 255, 0.15);
+}
+
 /* Right Side - Hero Image Area */
 .hero-image {
     position: relative;
     flex: 1;
     height: 100%;
     min-height: 600px;
-    /* Ensure minimum space */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -132,14 +195,15 @@
 
 .floating-icon {
     position: absolute;
-    font-size: 3rem;
+    font-size: 2.5rem;
     filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5));
 }
 
-.icon-react {
-    color: #61dafb;
+.icon-tensorflow {
+    color: #ff6f00;
     top: 15%;
     right: 15%;
+    font-size: 2.8rem;
 }
 
 .icon-python {
@@ -149,8 +213,8 @@
     font-size: 2.5rem;
 }
 
-.icon-js {
-    color: #f7df1e;
+.icon-brain {
+    color: var(--accent-primary);
     bottom: 35%;
     left: 10%;
     font-size: 2.8rem;
@@ -177,7 +241,7 @@
         flex-direction: column;
         justify-content: center;
         text-align: center;
-        padding-top: 80px;
+        padding-top: 100px;
     }
 
     .hero-content {
@@ -189,15 +253,21 @@
 
     .hero-name {
         font-size: 3rem;
+        min-height: 4rem;
     }
 
     .hero-buttons {
         justify-content: center;
     }
 
+    .hero-social-links {
+        justify-content: center;
+    }
+
     .hero-image {
         width: 100%;
         height: 400px;
+        min-height: 400px;
     }
 
     .tech-shape-container {
@@ -207,14 +277,31 @@
 
 @media screen and (max-width: 600px) {
     .hero-name {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        min-height: 3rem;
     }
 
     .hero-greeting {
         font-size: 1.2rem;
     }
 
+    .hero-status-badge {
+        font-size: 0.75rem;
+        padding: 0.4rem 1rem;
+    }
+
     .floating-icon {
         font-size: 2rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
     }
 }

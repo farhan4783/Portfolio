@@ -1,13 +1,101 @@
 import React, { useState } from "react";
 import Tilt from "react-parallax-tilt";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 import SectionWrapper from "../hoc/SectionWrapper";
 import { projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
-import { FaGithub, FaStar } from 'react-icons/fa';
+import { FaGithub, FaStar, FaTimes, FaArrowRight, FaChartBar } from 'react-icons/fa';
 import ProjectFilter from './ProjectFilter';
 import '../styles/Works.css';
+
+const ProjectDeepDive = ({ project, onClose }) => {
+    if (!project) return null;
+
+    return (
+        <motion.div
+            className="deep-dive-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+        >
+            <motion.div
+                className="deep-dive-modal"
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 50, scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+                onClick={(e) => e.stopPropagation()}
+            >
+                <button className="deep-dive-close" onClick={onClose}>
+                    <FaTimes />
+                </button>
+
+                <div className="deep-dive-header">
+                    <img src={project.image} alt={project.name} className="deep-dive-image" />
+                    <div className="deep-dive-overlay-gradient"></div>
+                    <div className="deep-dive-header-content">
+                        <h2 className="deep-dive-title">{project.name}</h2>
+                        <div className="deep-dive-tags">
+                            {project.tags.map(tag => (
+                                <span key={tag.name} className="deep-dive-tag">#{tag.name}</span>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                <div className="deep-dive-body">
+                    <p className="deep-dive-description">{project.description}</p>
+
+                    {project.challenge && (
+                        <div className="deep-dive-section">
+                            <h3 className="deep-dive-section-title">
+                                <span className="section-emoji">🎯</span> The Challenge
+                            </h3>
+                            <p className="deep-dive-section-text">{project.challenge}</p>
+                        </div>
+                    )}
+
+                    {project.approach && (
+                        <div className="deep-dive-section">
+                            <h3 className="deep-dive-section-title">
+                                <span className="section-emoji">⚙️</span> Approach
+                            </h3>
+                            <p className="deep-dive-section-text">{project.approach}</p>
+                        </div>
+                    )}
+
+                    {project.results && (
+                        <div className="deep-dive-section">
+                            <h3 className="deep-dive-section-title">
+                                <span className="section-emoji">📊</span> Results
+                            </h3>
+                            <p className="deep-dive-section-text">{project.results}</p>
+                        </div>
+                    )}
+
+                    {project.metrics && (
+                        <div className="deep-dive-metrics">
+                            {Object.entries(project.metrics).map(([key, value]) => (
+                                <div key={key} className="deep-dive-metric">
+                                    <span className="metric-value">{value}</span>
+                                    <span className="metric-label">{key.replace(/([A-Z])/g, ' $1').trim()}</span>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    <div className="deep-dive-actions">
+                        <a href={project.source_code_link} target="_blank" rel="noopener noreferrer" className="deep-dive-btn deep-dive-btn-primary">
+                            <FaGithub /> View Source Code
+                        </a>
+                    </div>
+                </div>
+            </motion.div>
+        </motion.div>
+    );
+};
 
 const ProjectCard = ({
     index,
@@ -16,13 +104,19 @@ const ProjectCard = ({
     tags,
     image,
     source_code_link,
-    featured
+    featured,
+    metrics,
+    challenge,
+    approach,
+    results,
+    onViewDetails,
+    project
 }) => {
     return (
-        <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
+        <motion.div variants={fadeIn("up", "spring", index * 0.3, 0.75)}>
             <Tilt
                 options={{
-                    max: 45,
+                    max: 15,
                     scale: 1,
                     speed: 450,
                 }}
@@ -36,7 +130,7 @@ const ProjectCard = ({
                 <div className='featured-image-container relative w-full h-[230px]'>
                     <img
                         src={image}
-                        alt='project_image'
+                        alt={name}
                         className='featured-image'
                     />
 
@@ -55,6 +149,18 @@ const ProjectCard = ({
                     <p className='featured-description'>{description}</p>
                 </div>
 
+                {/* Metrics Preview */}
+                {metrics && (
+                    <div className="card-metrics-preview">
+                        {Object.entries(metrics).slice(0, 3).map(([key, value]) => (
+                            <div key={key} className="card-metric">
+                                <span className="card-metric-value">{value}</span>
+                                <span className="card-metric-label">{key.replace(/([A-Z])/g, ' $1').trim()}</span>
+                            </div>
+                        ))}
+                    </div>
+                )}
+
                 <div className='tags-container mt-4'>
                     {tags.map((tag) => (
                         <p
@@ -65,6 +171,21 @@ const ProjectCard = ({
                         </p>
                     ))}
                 </div>
+
+                {/* View Details Button */}
+                {(challenge || approach || results) && (
+                    <button
+                        className="view-details-btn"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onViewDetails(project);
+                        }}
+                    >
+                        <FaChartBar style={{ marginRight: '6px' }} />
+                        View Deep Dive
+                        <FaArrowRight style={{ marginLeft: '6px', fontSize: '0.7rem' }} />
+                    </button>
+                )}
             </Tilt>
         </motion.div>
     );
@@ -73,6 +194,7 @@ const ProjectCard = ({
 const Works = () => {
     const [activeCategory, setActiveCategory] = useState('All');
     const [searchQuery, setSearchQuery] = useState('');
+    const [selectedProject, setSelectedProject] = useState(null);
 
     // Get unique categories
     const categories = [...new Set(projects.map(project => project.category))];
@@ -97,11 +219,8 @@ const Works = () => {
                     variants={fadeIn("", "", 0.1, 1)}
                     className='works-description mt-3'
                 >
-                    Following projects showcase my skills and experience through
-                    real-world examples of my work. Each project is briefly described with
-                    links to code repositories. It reflects my
-                    ability to solve complex problems, work with different technologies,
-                    and manage projects effectively.
+                    Each project below solves a real problem with a concrete technical approach.
+                    Click "View Deep Dive" to see the challenge, methodology, and results behind each build.
                 </motion.p>
             </div>
 
@@ -125,7 +244,12 @@ const Works = () => {
                 {filteredProjects.length > 0 ? (
                     filteredProjects.map((project, index) => (
                         <div key={`project-${index}`} className="project-card-wrapper">
-                            <ProjectCard index={index} {...project} />
+                            <ProjectCard
+                                index={index}
+                                {...project}
+                                project={project}
+                                onViewDetails={setSelectedProject}
+                            />
                         </div>
                     ))
                 ) : (
@@ -134,9 +258,18 @@ const Works = () => {
                     </div>
                 )}
             </div>
+
+            {/* Deep Dive Modal */}
+            <AnimatePresence>
+                {selectedProject && (
+                    <ProjectDeepDive
+                        project={selectedProject}
+                        onClose={() => setSelectedProject(null)}
+                    />
+                )}
+            </AnimatePresence>
         </>
     );
 };
 
 export default SectionWrapper(Works, "works");
-

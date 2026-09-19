@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaCode, FaProjectDiagram, FaTools } from 'react-icons/fa';
+import { FaGithub, FaBrain, FaProjectDiagram, FaDatabase, FaChartLine, FaCogs } from 'react-icons/fa';
 import SectionWrapper from '../hoc/SectionWrapper';
 import { fadeIn } from '../utils/motion';
 import '../styles/Statistics.css';
@@ -9,19 +9,37 @@ const Statistics = () => {
     const [counts, setCounts] = useState({
         projects: 0,
         repos: 0,
+        mlModels: 0,
         technologies: 0,
-        experience: 0
     });
 
     const [hasAnimated, setHasAnimated] = useState(false);
+    const [githubRepos, setGithubRepos] = useState(null);
     const sectionRef = useRef(null);
 
     const finalCounts = {
-        projects: 15,
-        repos: 52,
+        projects: 6,
+        repos: 50,
+        mlModels: 8,
         technologies: 20,
-        experience: 3
     };
+
+    // Try to fetch actual GitHub repo count
+    useEffect(() => {
+        const fetchGithubStats = async () => {
+            try {
+                const response = await fetch('https://api.github.com/users/farhan4783');
+                if (response.ok) {
+                    const data = await response.json();
+                    setGithubRepos(data.public_repos);
+                    finalCounts.repos = data.public_repos;
+                }
+            } catch (error) {
+                // Fallback to hardcoded value
+            }
+        };
+        fetchGithubStats();
+    }, []);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -51,16 +69,23 @@ const Statistics = () => {
         const interval = setInterval(() => {
             currentStep++;
             const progress = currentStep / steps;
+            // Eased progress for smoother animation
+            const easedProgress = 1 - Math.pow(1 - progress, 3);
 
             setCounts({
-                projects: Math.floor(finalCounts.projects * progress),
-                repos: Math.floor(finalCounts.repos * progress),
-                technologies: Math.floor(finalCounts.technologies * progress),
-                experience: Math.floor(finalCounts.experience * progress)
+                projects: Math.floor(finalCounts.projects * easedProgress),
+                repos: Math.floor((githubRepos || finalCounts.repos) * easedProgress),
+                mlModels: Math.floor(finalCounts.mlModels * easedProgress),
+                technologies: Math.floor(finalCounts.technologies * easedProgress),
             });
 
             if (currentStep >= steps) {
-                setCounts(finalCounts);
+                setCounts({
+                    projects: finalCounts.projects,
+                    repos: githubRepos || finalCounts.repos,
+                    mlModels: finalCounts.mlModels,
+                    technologies: finalCounts.technologies,
+                });
                 clearInterval(interval);
             }
         }, stepDuration);
@@ -70,26 +95,30 @@ const Statistics = () => {
         {
             icon: <FaProjectDiagram />,
             count: counts.projects,
-            label: "Projects Completed",
-            suffix: "+"
+            label: "AI/ML Projects Built",
+            suffix: "+",
+            description: "End-to-end deployed"
         },
         {
             icon: <FaGithub />,
             count: counts.repos,
             label: "GitHub Repositories",
-            suffix: "+"
+            suffix: "+",
+            description: githubRepos ? "Live count" : "And counting"
         },
         {
-            icon: <FaTools />,
+            icon: <FaBrain />,
+            count: counts.mlModels,
+            label: "ML Models Trained",
+            suffix: "+",
+            description: "LSTM, XGBoost, SVD & more"
+        },
+        {
+            icon: <FaCogs />,
             count: counts.technologies,
-            label: "Technologies Mastered",
-            suffix: "+"
-        },
-        {
-            icon: <FaCode />,
-            count: counts.experience,
-            label: "Years of Experience",
-            suffix: "+"
+            label: "Technologies Used",
+            suffix: "+",
+            description: "Python, TF, React, Django..."
         }
     ];
 
@@ -99,7 +128,7 @@ const Statistics = () => {
                 {stats.map((stat, index) => (
                     <motion.div
                         key={stat.label}
-                        variants={fadeIn("up", "spring", index * 0.2, 0.75)}
+                        variants={fadeIn("up", "spring", index * 0.15, 0.75)}
                         className="stat-card"
                     >
                         <div className="stat-icon">
@@ -109,6 +138,7 @@ const Statistics = () => {
                             {stat.count}{stat.suffix}
                         </div>
                         <div className="stat-label">{stat.label}</div>
+                        <div className="stat-description">{stat.description}</div>
                     </motion.div>
                 ))}
             </div>

@@ -4,10 +4,16 @@
     position: fixed;
     top: 0;
     z-index: 999;
-    background: rgba(10, 10, 10, 0.8);
+    background: rgba(10, 10, 10, 0.6);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--glass-border);
+    border-bottom: 1px solid transparent;
     transition: all 0.3s ease;
+}
+
+.navbar-scrolled {
+    background: rgba(10, 10, 10, 0.95);
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
 
 .navbar-container {
@@ -25,10 +31,18 @@
     font-weight: bold;
     color: var(--text-primary);
     cursor: pointer;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
 }
 
 .dot {
     color: var(--accent-primary);
+    font-weight: 800;
 }
 
 .nav-menu {
@@ -40,17 +54,43 @@
 .nav-item a {
     color: var(--text-secondary);
     font-weight: 500;
+    font-size: 0.95rem;
     transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-item a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    transition: width 0.3s ease;
 }
 
 .nav-item a:hover {
     color: var(--accent-primary);
 }
 
+.nav-item a:hover::after {
+    width: 100%;
+}
+
 .social-icons {
     display: flex;
     gap: 1rem;
     font-size: 1.2rem;
+}
+
+.social-icons a {
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--accent-primary);
+    transform: translateY(-2px);
 }
 
 .menu-icon {
@@ -68,7 +108,8 @@
         position: absolute;
         top: 80px;
         left: -100%;
-        background: var(--bg-primary);
+        background: rgba(10, 10, 10, 0.98);
+        backdrop-filter: blur(20px);
         transition: all 0.5s ease;
         padding-top: 2rem;
     }

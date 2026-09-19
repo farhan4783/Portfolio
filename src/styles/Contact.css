@@ -4,7 +4,6 @@
 }
 
 .contact-page-wrapper {
-    /* Override SectionWrapper defaults to allow full width */
     padding: 0 !important;
     max-width: 100% !important;
     width: 100% !important;
@@ -13,22 +12,17 @@
 
 .contact-container {
     width: 100%;
-    /* Ensure internal container uses full width */
     display: flex;
     flex-direction: column;
     gap: 0;
-    /* Remove gap for full seamless look */
     overflow: hidden;
+    position: relative;
 }
 
-/* Desktop Styles */
-/* Desktop Styles */
-/* Desktop Styles */
 @media (min-width: 1024px) {
     .contact-container {
         flex-direction: row;
         align-items: center;
-        /* vertical alignment */
         gap: 2rem;
         overflow: hidden;
     }
@@ -44,36 +38,43 @@
 .contact-earth-container {
     flex: 1;
     height: 350px;
-    /* Default height for mobile */
 }
 
 @media (min-width: 1024px) {
     .contact-earth-container {
         height: 550px;
-        /* Height for desktop */
     }
 }
-
-
 
 .contact-text-secondary {
     color: #aaa6c3;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.contact-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .contact-head-text {
     color: white;
     font-weight: 900;
     font-size: 40px;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .contact-form {
-    margin-top: 3rem;
+    margin-top: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .contact-label {
@@ -84,47 +85,98 @@
 .contact-label-text {
     color: white;
     font-weight: 500;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
 }
 
 .contact-input {
     background: #151030;
     padding: 1rem 1.5rem;
-    border-radius: 0.5rem;
-    border: none;
+    border-radius: 0.75rem;
+    border: 1px solid transparent;
     color: white;
     outline: none;
     font-weight: 500;
     width: 100%;
-    /* Ensure input fills the label/container */
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.contact-input:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.1);
+}
+
+.contact-input::placeholder {
+    color: #4a4a6a;
 }
 
 .contact-submit-btn {
-    background: #151030;
-    padding: 0.75rem 2rem;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    padding: 1rem 2rem;
     border-radius: 0.75rem;
     color: white;
-    font-weight: bold;
+    font-weight: 700;
     border: none;
     cursor: pointer;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 20px rgba(0, 242, 255, 0.2);
     width: fit-content;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.contact-submit-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(112, 0, 255, 0.4);
+}
+
+.contact-submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.btn-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
 .social-links {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 .social-icon {
     color: white;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     transition: all 0.3s ease;
-    opacity: 0.8;
+    opacity: 0.6;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .social-icon:hover {
     color: var(--accent-primary, #00f2ff);
     transform: translateY(-3px);
     opacity: 1;
+    background: rgba(0, 242, 255, 0.1);
 }

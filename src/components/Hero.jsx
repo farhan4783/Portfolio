@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaReact, FaCode } from 'react-icons/fa';
-import { SiPython, SiJavascript } from 'react-icons/si';
+import { FaGithub, FaLinkedin, FaDownload, FaBrain } from 'react-icons/fa';
+import { SiTensorflow, SiPython } from 'react-icons/si';
 import ComputersCanvas from './canvas/Computers';
 import { heroData } from '../constants';
 import '../styles/Hero.css';
@@ -35,10 +35,21 @@ const Hero = () => {
     return (
         <section className="hero" id="home">
             <div className="hero-content">
+                {/* AI Status Badge */}
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="hero-status-badge"
+                >
+                    <span className="status-dot"></span>
+                    <span>Open to AI/ML Opportunities</span>
+                </motion.div>
+
                 <motion.h3
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
                     className="hero-greeting"
                 >
                     {heroData.greeting}
@@ -69,8 +80,26 @@ const Hero = () => {
                     transition={{ duration: 0.5, delay: 0.6 }}
                     className="hero-buttons"
                 >
-                    <a href="#works" className="btn btn-primary">View Projects</a>
+                    <a href="#works" className="btn btn-primary">
+                        <FaBrain style={{ marginRight: '8px' }} />
+                        View AI Projects
+                    </a>
                     <a href="#contact" className="btn btn-secondary">Contact Me</a>
+                </motion.div>
+
+                {/* Social Links */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.8 }}
+                    className="hero-social-links"
+                >
+                    <a href={heroData.socialLinks.github} target="_blank" rel="noopener noreferrer" className="hero-social-icon" title="GitHub">
+                        <FaGithub />
+                    </a>
+                    <a href={heroData.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="hero-social-icon" title="LinkedIn">
+                        <FaLinkedin />
+                    </a>
                 </motion.div>
             </div>
 
@@ -82,6 +111,31 @@ const Hero = () => {
             >
                 <div className="tech-shape-container">
                     <ComputersCanvas />
+                </div>
+
+                {/* Floating AI-themed icons */}
+                <div className="floating-icons-container">
+                    <motion.div
+                        animate={{ y: [-10, 10, -10] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                        className="floating-icon icon-tensorflow"
+                    >
+                        <SiTensorflow />
+                    </motion.div>
+                    <motion.div
+                        animate={{ y: [10, -10, 10] }}
+                        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+                        className="floating-icon icon-python"
+                    >
+                        <SiPython />
+                    </motion.div>
+                    <motion.div
+                        animate={{ y: [-8, 12, -8] }}
+                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                        className="floating-icon icon-brain"
+                    >
+                        <FaBrain />
+                    </motion.div>
                 </div>
             </motion.div>
         </section>
