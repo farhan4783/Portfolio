@@ -8,7 +8,7 @@ import {
     FaCheck,
     FaChevronDown,
     FaChevronUp,
-    FaUserTie
+    FaCommentDots
 } from 'react-icons/fa';
 import '../styles/RecruiterDock.css';
 
@@ -29,15 +29,15 @@ const RecruiterDock = () => {
     };
 
     return (
-        <aside className="recruiter-dock-wrapper" aria-label="Recruiter Quick Contact Dock">
+        <aside className="recruiter-dock-wrapper" aria-label="Connect Quick Menu">
             <div className="recruiter-dock-container">
                 <AnimatePresence>
                     {isExpanded && (
                         <motion.div
-                            initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                            initial={{ opacity: 0, y: 10, scale: 0.96 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: 15, scale: 0.95 }}
-                            transition={{ duration: 0.2 }}
+                            exit={{ opacity: 0, y: 10, scale: 0.96 }}
+                            transition={{ duration: 0.18 }}
                             className="dock-expanded-menu"
                         >
                             <div className="dock-menu-header">
@@ -59,13 +59,13 @@ const RecruiterDock = () => {
                                 >
                                     <FaDownload className="dock-item-icon" />
                                     <div className="dock-item-text">
-                                        <span className="dock-item-primary">Download Resume</span>
-                                        <span className="dock-item-secondary">PDF (Latest 2026)</span>
+                                        <span className="dock-item-primary">Resume</span>
+                                        <span className="dock-item-secondary">PDF Download</span>
                                     </div>
                                 </a>
 
                                 <a
-                                    href={`https://wa.me/${phoneRaw}?text=${encodeURIComponent("Hi Farhan, I reviewed your portfolio and would like to connect regarding an opportunity.")}`}
+                                    href={`https://wa.me/${phoneRaw}?text=${encodeURIComponent("Hi Farhan, I saw your portfolio and would like to connect.")}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="dock-action-item dock-whatsapp-action"
@@ -73,7 +73,7 @@ const RecruiterDock = () => {
                                 >
                                     <FaWhatsapp className="dock-item-icon whatsapp-color" />
                                     <div className="dock-item-text">
-                                        <span className="dock-item-primary">Chat on WhatsApp</span>
+                                        <span className="dock-item-primary">WhatsApp</span>
                                         <span className="dock-item-secondary">+91 9599372101</span>
                                     </div>
                                 </a>
@@ -91,7 +91,7 @@ const RecruiterDock = () => {
                                     )}
                                     <div className="dock-item-text">
                                         <span className="dock-item-primary">
-                                            {copiedEmail ? "Email Copied!" : "Copy Email"}
+                                            {copiedEmail ? "Copied!" : "Email"}
                                         </span>
                                         <span className="dock-item-secondary">{email}</span>
                                     </div>
@@ -106,7 +106,7 @@ const RecruiterDock = () => {
                                 >
                                     <FaLinkedin className="dock-item-icon linkedin-color" />
                                     <div className="dock-item-text">
-                                        <span className="dock-item-primary">LinkedIn Profile</span>
+                                        <span className="dock-item-primary">LinkedIn</span>
                                         <span className="dock-item-secondary">mohdfarhansde</span>
                                     </div>
                                 </a>
@@ -115,16 +115,16 @@ const RecruiterDock = () => {
                     )}
                 </AnimatePresence>
 
-                {/* Main Floating Trigger Button */}
+                {/* Main Floating Trigger Button Named 'Connect' */}
                 <button
                     type="button"
                     className={`dock-trigger-btn ${isExpanded ? 'active' : ''}`}
                     onClick={() => setIsExpanded(!isExpanded)}
-                    aria-label="Toggle Recruiter Contact Dock"
+                    aria-label="Toggle Connect Menu"
                 >
                     <div className="dock-trigger-content">
-                        <FaUserTie className="dock-trigger-icon" />
-                        <span className="dock-trigger-label">Recruiter Fast-Connect</span>
+                        <FaCommentDots className="dock-trigger-icon" />
+                        <span className="dock-trigger-label">Connect</span>
                     </div>
                     {isExpanded ? <FaChevronDown className="dock-chevron" /> : <FaChevronUp className="dock-chevron" />}
                 </button>

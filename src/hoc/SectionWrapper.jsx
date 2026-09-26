@@ -10,7 +10,7 @@ const SectionWrapper = (Component, idName, extraClass) =>
                 whileInView='show'
                 viewport={{ once: true, amount: 0.05 }}
                 className={`max-w-7xl mx-auto relative z-0 ${extraClass || ''}`}
-                style={{ padding: '4rem 2rem' }}
+                style={{ padding: '2.5rem 1.5rem' }}
             >
                 <span className='hash-span' id={idName}>
                     &nbsp;

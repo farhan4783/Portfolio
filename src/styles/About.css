@@ -1,31 +1,33 @@
 .about-header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
 }
 
 .section-subtext {
-    font-size: 0.875rem;
+    font-size: 0.72rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     color: var(--accent-primary);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.35rem;
+    font-weight: 700;
 }
 
 .section-heading {
-    font-size: 3rem;
-    font-weight: 700;
+    font-size: 2rem;
+    font-weight: 800;
     background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
 }
 
 .about-description {
-    font-size: 1.125rem;
-    line-height: 1.8;
+    font-size: 0.88rem;
+    line-height: 1.65;
     color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    max-width: 900px;
+    margin-bottom: 0.85rem;
+    max-width: 800px;
 }
 
 .about-description .gradient-text {
@@ -37,22 +39,22 @@
 }
 
 .about-cta-row {
-    margin: 1.5rem 0 2rem;
+    margin: 1rem 0 1.5rem;
 }
 
 .about-resume-btn {
     display: inline-flex;
     align-items: center;
-    padding: 0.85rem 1.75rem;
-    border-radius: 12px;
+    padding: 0.55rem 1.15rem;
+    border-radius: 8px;
     background: rgba(0, 242, 255, 0.08);
     border: 1px solid rgba(0, 242, 255, 0.3);
     color: var(--accent-primary);
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.78rem;
     text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 242, 255, 0.1);
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 10px rgba(0, 242, 255, 0.1);
 }
 
 .about-resume-btn:hover {
@@ -60,23 +62,23 @@
     color: #fff;
     border-color: transparent;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 242, 255, 0.3);
+    box-shadow: 0 6px 18px rgba(0, 242, 255, 0.3);
 }
 
 .highlights-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 2rem;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
 }
 
 .highlight-card {
     background: var(--glass-bg);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    padding: 2rem;
-    transition: all 0.3s ease;
+    border-radius: 14px;
+    padding: 1.25rem;
+    transition: all 0.25s ease;
     position: relative;
     overflow: hidden;
 }
@@ -87,16 +89,16 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
+    height: 2px;
     background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
     transform: scaleX(0);
-    transition: transform 0.3s ease;
+    transition: transform 0.25s ease;
 }
 
 .highlight-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-4px);
     border-color: var(--accent-primary);
-    box-shadow: 0 20px 40px rgba(0, 242, 255, 0.1);
+    box-shadow: 0 12px 25px rgba(0, 242, 255, 0.1);
 }
 
 .highlight-card:hover::before {
@@ -104,43 +106,34 @@
 }
 
 .highlight-icon {
-    font-size: 2.5rem;
+    font-size: 1.6rem;
     color: var(--accent-primary);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     display: flex;
     align-items: center;
     justify-content: flex-start;
 }
 
 .highlight-title {
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.4rem;
 }
 
 .highlight-description {
-    font-size: 0.95rem;
-    line-height: 1.6;
+    font-size: 0.8rem;
+    line-height: 1.55;
     color: var(--text-secondary);
 }
 
-/* Responsive Design */
 @media (max-width: 900px) {
-    .section-heading {
-        font-size: 2rem;
-    }
-
-    .about-description {
-        font-size: 1rem;
-    }
-
     .highlights-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1rem;
     }
 
-    .highlight-card {
-        padding: 1.5rem;
+    .section-heading {
+        font-size: 1.7rem;
     }
 }
