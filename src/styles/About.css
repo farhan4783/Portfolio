@@ -1,33 +1,33 @@
 .about-header {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
 }
 
 .section-subtext {
-    font-size: 0.72rem;
+    font-size: 0.82rem;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.8px;
     color: var(--accent-primary);
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.45rem;
     font-weight: 700;
 }
 
 .section-heading {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 800;
     background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
     line-height: 1.2;
 }
 
 .about-description {
-    font-size: 0.88rem;
-    line-height: 1.65;
+    font-size: 1.05rem;
+    line-height: 1.75;
     color: var(--text-secondary);
-    margin-bottom: 0.85rem;
-    max-width: 800px;
+    margin-bottom: 1.15rem;
+    max-width: 820px;
 }
 
 .about-description .gradient-text {
@@ -39,22 +39,22 @@
 }
 
 .about-cta-row {
-    margin: 1rem 0 1.5rem;
+    margin: 1.25rem 0 1.75rem;
 }
 
 .about-resume-btn {
     display: inline-flex;
     align-items: center;
-    padding: 0.55rem 1.15rem;
-    border-radius: 8px;
+    padding: 0.65rem 1.35rem;
+    border-radius: 10px;
     background: rgba(0, 242, 255, 0.08);
-    border: 1px solid rgba(0, 242, 255, 0.3);
+    border: 1px solid rgba(0, 242, 255, 0.35);
     color: var(--accent-primary);
-    font-weight: 600;
-    font-size: 0.78rem;
+    font-weight: 700;
+    font-size: 0.86rem;
     text-decoration: none;
     transition: all 0.25s ease;
-    box-shadow: 0 3px 10px rgba(0, 242, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 242, 255, 0.12);
 }
 
 .about-resume-btn:hover {
@@ -62,22 +62,22 @@
     color: #fff;
     border-color: transparent;
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0, 242, 255, 0.3);
+    box-shadow: 0 6px 20px rgba(0, 242, 255, 0.35);
 }
 
 .highlights-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-    margin-top: 1.5rem;
+    gap: 1.35rem;
+    margin-top: 1.75rem;
 }
 
 .highlight-card {
     background: var(--glass-bg);
     backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
-    border-radius: 14px;
-    padding: 1.25rem;
+    border-radius: 16px;
+    padding: 1.45rem;
     transition: all 0.25s ease;
     position: relative;
     overflow: hidden;
@@ -89,7 +89,7 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
+    height: 3px;
     background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
     transform: scaleX(0);
     transition: transform 0.25s ease;
@@ -98,7 +98,7 @@
 .highlight-card:hover {
     transform: translateY(-4px);
     border-color: var(--accent-primary);
-    box-shadow: 0 12px 25px rgba(0, 242, 255, 0.1);
+    box-shadow: 0 12px 28px rgba(0, 242, 255, 0.15);
 }
 
 .highlight-card:hover::before {
@@ -106,24 +106,24 @@
 }
 
 .highlight-icon {
-    font-size: 1.6rem;
+    font-size: 1.85rem;
     color: var(--accent-primary);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.85rem;
     display: flex;
     align-items: center;
     justify-content: flex-start;
 }
 
 .highlight-title {
-    font-size: 1rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.5rem;
 }
 
 .highlight-description {
-    font-size: 0.8rem;
-    line-height: 1.55;
+    font-size: 0.88rem;
+    line-height: 1.6;
     color: var(--text-secondary);
 }
 
@@ -134,6 +134,6 @@
     }
 
     .section-heading {
-        font-size: 1.7rem;
+        font-size: 2rem;
     }
 }

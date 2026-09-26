@@ -35,7 +35,7 @@ const Experience = () => {
             type: "project"
         },
         {
-            year: "2024",
+            year: "2025",
             title: "Recommendation Engines & Data Science",
             institution: "Movie Maverick & ML Systems",
             description: "Engineered Movie Maverick, a hybrid movie recommendation platform using SVD matrix factorization, TF-IDF content analysis, and Redis caching — reducing cold-start prediction error by 34% and cutting response times to <85ms.",
@@ -44,7 +44,7 @@ const Experience = () => {
             type: "project"
         },
         {
-            year: "2023 - 2024",
+            year: "2025 - 2026",
             title: "Deep Learning & Predictive Modeling",
             institution: "ML Engineering Projects",
             description: "Developed LSTM stock market predictor achieving 87.3% directional accuracy with walk-forward validation. Built Customer Churn system with 92% recall using XGBoost, SMOTE, and SHAP explainability.",

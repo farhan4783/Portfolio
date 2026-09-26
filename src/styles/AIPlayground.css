@@ -1,13 +1,13 @@
 .ai-playground-header {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
 }
 
 .ai-playground-description {
-    font-size: 0.88rem;
-    line-height: 1.6;
+    font-size: 1.05rem;
+    line-height: 1.7;
     color: var(--text-secondary);
-    max-width: 750px;
-    margin-bottom: 1.5rem;
+    max-width: 780px;
+    margin-bottom: 1.75rem;
 }
 
 .ai-playground-description .gradient-text {
@@ -17,24 +17,24 @@
 /* Demo Tabs */
 .ai-demo-tabs {
     display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1.25rem;
+    gap: 0.65rem;
+    margin-bottom: 1.5rem;
     flex-wrap: wrap;
 }
 
 .ai-demo-tab {
-    padding: 0.45rem 1rem;
+    padding: 0.55rem 1.2rem;
     background: var(--glass-bg);
     backdrop-filter: blur(8px);
     border: 1px solid var(--glass-border);
-    border-radius: 8px;
+    border-radius: 10px;
     color: var(--text-secondary);
-    font-size: 0.78rem;
+    font-size: 0.88rem;
     font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.45rem;
     transition: all 0.25s ease;
 }
 
@@ -47,12 +47,12 @@
     background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
     border-color: transparent;
     color: white;
-    font-weight: 600;
-    box-shadow: 0 4px 15px rgba(0, 242, 255, 0.2);
+    font-weight: 700;
+    box-shadow: 0 4px 18px rgba(0, 242, 255, 0.25);
 }
 
 .ai-demo-tab-icon {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
 }
 
 /* Demo Card */

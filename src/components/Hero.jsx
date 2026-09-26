@@ -91,7 +91,7 @@ const Hero = () => {
                 >
                     <a href="#works" className="btn btn-primary">
                         <FaCogs style={{ marginRight: '6px' }} />
-                        Explore Case Studies
+                        Explore Projects
                     </a>
                     <a
                         href={resumeUrl}
