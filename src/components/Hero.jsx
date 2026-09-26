@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaDownload, FaBrain } from 'react-icons/fa';
+import {
+    FaGithub,
+    FaLinkedin,
+    FaDownload,
+    FaBrain,
+    FaEnvelope,
+    FaWhatsapp,
+    FaCopy,
+    FaCheck,
+    FaMapMarkerAlt,
+    FaCogs
+} from 'react-icons/fa';
 import { SiTensorflow, SiPython } from 'react-icons/si';
 import ComputersCanvas from './canvas/Computers';
 import { heroData } from '../constants';
@@ -11,14 +22,15 @@ const Hero = () => {
     const [roleIndex, setRoleIndex] = useState(0);
     const [displayedRole, setDisplayedRole] = useState('');
     const [isDeleting, setIsDeleting] = useState(false);
+    const [copiedEmail, setCopiedEmail] = useState(false);
 
     useEffect(() => {
-        const typeSpeed = isDeleting ? 50 : 150;
+        const typeSpeed = isDeleting ? 45 : 120;
         const currentRole = roles[roleIndex];
 
         const timer = setTimeout(() => {
             if (!isDeleting && displayedRole === currentRole) {
-                setTimeout(() => setIsDeleting(true), 1500);
+                setTimeout(() => setIsDeleting(true), 1600);
             } else if (isDeleting && displayedRole === '') {
                 setIsDeleting(false);
                 setRoleIndex((prev) => (prev + 1) % roles.length);
@@ -34,10 +46,17 @@ const Hero = () => {
 
     const resumeUrl = `${import.meta.env.BASE_URL}Mohd_Farhan.pdf`;
 
+    const handleCopyEmail = (e) => {
+        e.preventDefault();
+        navigator.clipboard.writeText("mohdfarhan4002@gmail.com");
+        setCopiedEmail(true);
+        setTimeout(() => setCopiedEmail(false), 2500);
+    };
+
     return (
         <section className="hero" id="home">
             <div className="hero-content">
-                {/* AI Status Badge */}
+                {/* Status Badge */}
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -45,7 +64,7 @@ const Hero = () => {
                     className="hero-status-badge"
                 >
                     <span className="status-dot"></span>
-                    <span>Open to AI/ML Opportunities</span>
+                    <span>Open to Software & Data Science Roles</span>
                 </motion.div>
 
                 <motion.h3
@@ -76,6 +95,47 @@ const Hero = () => {
                     {heroData.description}
                 </motion.p>
 
+                {/* Recruiter Fast Access Card */}
+                <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                    className="hero-recruiter-card"
+                >
+                    <div className="recruiter-card-header">
+                        <span className="recruiter-badge">Recruiter Fast-Connect</span>
+                        <span className="recruiter-location">
+                            <FaMapMarkerAlt style={{ color: 'var(--accent-primary)', marginRight: '4px' }} />
+                            Greater Noida / Delhi NCR (Open to Relocation & Remote)
+                        </span>
+                    </div>
+
+                    <div className="recruiter-quick-actions">
+                        <button
+                            type="button"
+                            onClick={handleCopyEmail}
+                            className={`quick-contact-btn email-btn ${copiedEmail ? 'copied' : ''}`}
+                            title="Click to copy email address"
+                        >
+                            {copiedEmail ? <FaCheck style={{ color: '#00f2ff' }} /> : <FaEnvelope />}
+                            <span>{copiedEmail ? "Email Copied!" : "mohdfarhan4002@gmail.com"}</span>
+                            {!copiedEmail && <FaCopy className="copy-icon-subtle" />}
+                        </button>
+
+                        <a
+                            href="https://wa.me/919599372101?text=Hi%20Farhan,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect%20regarding%20an%20opportunity."
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="quick-contact-btn whatsapp-btn"
+                            title="Direct WhatsApp chat"
+                        >
+                            <FaWhatsapp style={{ color: '#25d366' }} />
+                            <span>+91 9599372101</span>
+                        </a>
+                    </div>
+                </motion.div>
+
+                {/* Main Action Buttons */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -83,8 +143,8 @@ const Hero = () => {
                     className="hero-buttons"
                 >
                     <a href="#works" className="btn btn-primary">
-                        <FaBrain style={{ marginRight: '8px' }} />
-                        View AI Projects
+                        <FaCogs style={{ marginRight: '8px' }} />
+                        Explore Case Studies
                     </a>
                     <a
                         href={resumeUrl}
@@ -92,9 +152,10 @@ const Hero = () => {
                         rel="noopener noreferrer"
                         download="Mohd_Farhan_Resume.pdf"
                         className="btn btn-resume"
+                        title="Download Mohd Farhan's Resume PDF"
                     >
                         <FaDownload style={{ marginRight: '8px' }} />
-                        Resume
+                        Download Resume
                     </a>
                     <a href="#contact" className="btn btn-secondary">Contact Me</a>
                 </motion.div>
@@ -106,10 +167,10 @@ const Hero = () => {
                     transition={{ duration: 0.5, delay: 0.8 }}
                     className="hero-social-links"
                 >
-                    <a href={heroData.socialLinks.github} target="_blank" rel="noopener noreferrer" className="hero-social-icon" title="GitHub">
+                    <a href={heroData.socialLinks.github} target="_blank" rel="noopener noreferrer" className="hero-social-icon" title="GitHub Profile">
                         <FaGithub />
                     </a>
-                    <a href={heroData.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="hero-social-icon" title="LinkedIn">
+                    <a href={heroData.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="hero-social-icon" title="LinkedIn Profile">
                         <FaLinkedin />
                     </a>
                 </motion.div>

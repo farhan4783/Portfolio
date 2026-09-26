@@ -1,0 +1,218 @@
+/* RecruiterDock.css */
+
+.recruiter-dock-wrapper {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 950;
+    pointer-events: auto;
+    font-family: inherit;
+}
+
+.recruiter-dock-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.dock-trigger-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.65rem 1.15rem;
+    background: rgba(14, 10, 36, 0.88);
+    border: 1px solid rgba(0, 242, 255, 0.35);
+    border-radius: 50px;
+    color: white;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 242, 255, 0.2);
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.dock-trigger-btn:hover {
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 242, 255, 0.35);
+}
+
+.dock-trigger-btn.active {
+    background: linear-gradient(135deg, rgba(0, 242, 255, 0.2), rgba(112, 0, 255, 0.2));
+    border-color: var(--accent-primary);
+}
+
+.dock-trigger-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dock-trigger-icon {
+    color: var(--accent-primary);
+    font-size: 0.95rem;
+}
+
+.dock-trigger-label {
+    text-transform: uppercase;
+    font-size: 0.76rem;
+}
+
+.dock-chevron {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    margin-left: 2px;
+}
+
+/* Expanded Menu */
+.dock-expanded-menu {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    right: 0;
+    width: 290px;
+    background: #0e0a24;
+    border: 1px solid rgba(0, 242, 255, 0.25);
+    border-radius: 18px;
+    padding: 1rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 242, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.dock-menu-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 0.75rem;
+}
+
+.dock-status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #00ff88;
+    box-shadow: 0 0 10px #00ff88;
+    animation: dockPulse 2s infinite;
+    flex-shrink: 0;
+}
+
+@keyframes dockPulse {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.dock-title {
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: white;
+}
+
+.dock-sub {
+    font-size: 0.7rem;
+    color: var(--accent-primary);
+    font-weight: 600;
+}
+
+.dock-actions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.dock-action-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0.85rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left;
+    font-family: inherit;
+}
+
+.dock-action-item:hover {
+    background: rgba(0, 242, 255, 0.08);
+    border-color: rgba(0, 242, 255, 0.3);
+    transform: translateX(-3px);
+}
+
+.dock-resume-action:hover {
+    border-color: var(--accent-primary);
+}
+
+.dock-whatsapp-action:hover {
+    background: rgba(37, 211, 102, 0.1);
+    border-color: rgba(37, 211, 102, 0.4);
+}
+
+.dock-item-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.cyan-color {
+    color: #00f2ff;
+}
+
+.whatsapp-color {
+    color: #25d366;
+}
+
+.linkedin-color {
+    color: #0077b5;
+}
+
+.dock-item-text {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.dock-item-primary {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: white;
+}
+
+.dock-item-secondary {
+    font-size: 0.68rem;
+    color: #94a3b8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dock-email-action.copied {
+    border-color: #00f2ff;
+    background: rgba(0, 242, 255, 0.15);
+}
+
+@media (max-width: 600px) {
+    .recruiter-dock-wrapper {
+        bottom: 16px;
+        right: 16px;
+    }
+
+    .dock-trigger-btn {
+        padding: 0.55rem 0.95rem;
+        font-size: 0.75rem;
+    }
+
+    .dock-expanded-menu {
+        width: 260px;
+    }
+}

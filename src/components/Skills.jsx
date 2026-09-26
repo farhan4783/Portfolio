@@ -1,6 +1,22 @@
 import React, { useState } from 'react';
-import { FaReact, FaJs, FaHtml5, FaCss3Alt, FaNodeJs, FaGitAlt, FaPython, FaDocker } from 'react-icons/fa';
-import { SiTailwindcss, SiTypescript, SiMongodb, SiFigma, SiFlutter, SiDart, SiTensorflow, SiScikitlearn, SiFastapi, SiStreamlit, SiDjango, SiPostgresql } from 'react-icons/si';
+import { FaReact, FaJs, FaHtml5, FaCss3Alt, FaNodeJs, FaGitAlt, FaPython, FaDocker, FaNetworkWired } from 'react-icons/fa';
+import {
+    SiTailwindcss,
+    SiTypescript,
+    SiMongodb,
+    SiFigma,
+    SiFlutter,
+    SiDart,
+    SiTensorflow,
+    SiScikitlearn,
+    SiFastapi,
+    SiStreamlit,
+    SiDjango,
+    SiPostgresql,
+    SiRedis,
+    SiOpencv,
+    SiPandas
+} from 'react-icons/si';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/Skills.css';
 
@@ -9,7 +25,33 @@ const Skills = () => {
 
     const skillCategories = [
         {
-            category: "Frontend Development",
+            category: "Distributed & Backend",
+            icon: "⚙️",
+            skills: [
+                { name: 'Python', icon: <FaPython />, level: 'Advanced' },
+                { name: 'FastAPI', icon: <SiFastapi />, level: 'Advanced' },
+                { name: 'Django', icon: <SiDjango />, level: 'Advanced' },
+                { name: 'Node.js', icon: <FaNodeJs />, level: 'Intermediate' },
+                { name: 'Redis', icon: <SiRedis />, level: 'Advanced' },
+                { name: 'WebSockets', icon: <FaNetworkWired />, level: 'Advanced' },
+                { name: 'PostgreSQL', icon: <SiPostgresql />, level: 'Advanced' },
+                { name: 'MongoDB', icon: <SiMongodb />, level: 'Intermediate' },
+            ]
+        },
+        {
+            category: "Data Science & AI",
+            icon: "🤖",
+            skills: [
+                { name: 'Scikit-learn', icon: <SiScikitlearn />, level: 'Advanced' },
+                { name: 'TensorFlow', icon: <SiTensorflow />, level: 'Advanced' },
+                { name: 'Pandas / NumPy', icon: <SiPandas />, level: 'Advanced' },
+                { name: 'OpenCV / DeepFace', icon: <SiOpencv />, level: 'Advanced' },
+                { name: 'Streamlit', icon: <SiStreamlit />, level: 'Advanced' },
+                { name: 'Recommendation ML', icon: <SiScikitlearn />, level: 'Advanced' },
+            ]
+        },
+        {
+            category: "Frontend & UI",
             icon: "🎨",
             skills: [
                 { name: 'React', icon: <FaReact />, level: 'Advanced' },
@@ -21,34 +63,13 @@ const Skills = () => {
             ]
         },
         {
-            category: "Backend & Databases",
-            icon: "⚙️",
-            skills: [
-                { name: 'Python', icon: <FaPython />, level: 'Advanced' },
-                { name: 'Node.js', icon: <FaNodeJs />, level: 'Intermediate' },
-                { name: 'Django', icon: <SiDjango />, level: 'Advanced' },
-                { name: 'FastAPI', icon: <SiFastapi />, level: 'Advanced' },
-                { name: 'MongoDB', icon: <SiMongodb />, level: 'Intermediate' },
-                { name: 'PostgreSQL', icon: <SiPostgresql />, level: 'Intermediate' },
-            ]
-        },
-        {
-            category: "AI/ML & Data Science",
-            icon: "🤖",
-            skills: [
-                { name: 'TensorFlow', icon: <SiTensorflow />, level: 'Advanced' },
-                { name: 'Scikit-learn', icon: <SiScikitlearn />, level: 'Advanced' },
-                { name: 'Streamlit', icon: <SiStreamlit />, level: 'Advanced' },
-            ]
-        },
-        {
-            category: "Mobile & Tools",
+            category: "Mobile & DevOps",
             icon: "📱",
             skills: [
+                { name: 'Docker', icon: <FaDocker />, level: 'Intermediate' },
+                { name: 'Git', icon: <FaGitAlt />, level: 'Advanced' },
                 { name: 'Flutter', icon: <SiFlutter />, level: 'Advanced' },
                 { name: 'Dart', icon: <SiDart />, level: 'Advanced' },
-                { name: 'Git', icon: <FaGitAlt />, level: 'Advanced' },
-                { name: 'Docker', icon: <FaDocker />, level: 'Intermediate' },
                 { name: 'Figma', icon: <SiFigma />, level: 'Intermediate' },
             ]
         }
@@ -66,7 +87,7 @@ const Skills = () => {
     return (
         <section className="skills-section" id="skills">
             <h2 className="section-title">Technical Skills</h2>
-            <p className="skills-subtitle">Technologies I work with to build amazing projects</p>
+            <p className="skills-subtitle">Engineering toolkit across distributed systems, machine learning, and full stack development</p>
 
             {/* Tab Navigation */}
             <div className="skills-tabs">
@@ -98,7 +119,7 @@ const Skills = () => {
                                 key={index}
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: index * 0.1 }}
+                                transition={{ delay: index * 0.08 }}
                                 className="skill-card"
                             >
                                 <div className="skill-icon" style={{ color: 'var(--accent-primary)' }}>
@@ -111,7 +132,7 @@ const Skills = () => {
                                             className="skill-level-fill"
                                             initial={{ width: 0 }}
                                             animate={{ width: `${getLevelPercentage(skill.level)}%` }}
-                                            transition={{ delay: index * 0.1 + 0.2, duration: 0.8 }}
+                                            transition={{ delay: index * 0.08 + 0.15, duration: 0.7 }}
                                         />
                                     </div>
                                     <span className="skill-level-text">{skill.level}</span>

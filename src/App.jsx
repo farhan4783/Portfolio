@@ -1,9 +1,9 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import About from './components/About'
-import AIPlayground from './components/AIPlayground'
-import Statistics from './components/Statistics'
 import Works from './components/Works'
+import AIPlayground from './components/AIPlayground'
+import About from './components/About'
+import Statistics from './components/Statistics'
 import Experience from './components/Experience'
 import Skills from './components/Skills'
 import Achievements from './components/Achievements'
@@ -12,6 +12,7 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import ScrollProgress from './components/ScrollProgress'
 import Preloader from './components/Preloader'
+import RecruiterDock from './components/RecruiterDock'
 import { StarsCanvas } from './components/canvas';
 import './App.css'
 import './styles/animations.css'
@@ -27,16 +28,19 @@ function App() {
         </div>
         <Navbar />
         <Hero />
-        <About />
-        <AIPlayground />
-        <Statistics />
+        {/* Projects as the Centerpiece */}
         <Works />
+        <AIPlayground />
+        <About />
+        <Statistics />
         <Experience />
         <Skills />
         <Achievements />
         <CurrentWorks />
         <Contact />
         <Footer />
+        {/* Persistent Recruiter Quick-Contact Dock */}
+        <RecruiterDock />
       </div>
     </>
   )

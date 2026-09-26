@@ -31,25 +31,25 @@ const Navbar = () => {
 
                 <ul className={isOpen ? 'nav-menu active' : 'nav-menu'}>
                     <li className="nav-item">
-                        <a href="#home" onClick={toggleMenu}>Home</a>
+                        <a href="#home" onClick={() => setIsOpen(false)}>Home</a>
                     </li>
                     <li className="nav-item">
-                        <a href="#about" onClick={toggleMenu}>About</a>
+                        <a href="#works" onClick={() => setIsOpen(false)}>Case Studies</a>
                     </li>
                     <li className="nav-item">
-                        <a href="#ai-playground" onClick={toggleMenu}>AI Lab</a>
+                        <a href="#ai-playground" onClick={() => setIsOpen(false)}>AI Lab</a>
                     </li>
                     <li className="nav-item">
-                        <a href="#works" onClick={toggleMenu}>Projects</a>
+                        <a href="#about" onClick={() => setIsOpen(false)}>About</a>
                     </li>
                     <li className="nav-item">
-                        <a href="#experience" onClick={toggleMenu}>Experience</a>
+                        <a href="#experience" onClick={() => setIsOpen(false)}>Experience</a>
                     </li>
                     <li className="nav-item">
-                        <a href="#skills" onClick={toggleMenu}>Skills</a>
+                        <a href="#skills" onClick={() => setIsOpen(false)}>Skills</a>
                     </li>
                     <li className="nav-item">
-                        <a href="#contact" onClick={toggleMenu}>Contact</a>
+                        <a href="#contact" onClick={() => setIsOpen(false)}>Contact</a>
                     </li>
                     <li className="nav-item">
                         <a

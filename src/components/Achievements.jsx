@@ -26,16 +26,16 @@ const Achievements = () => {
         },
         {
             icon: <FaTrophy />,
-            title: "6+ AI/ML Projects Deployed",
-            description: "Built and shipped 6 production-quality AI projects including LSTM stock predictor (87.3% accuracy), recommendation engine, and customer churn system (92% recall).",
+            title: "Production Systems & ML Deployed",
+            description: "Built and shipped production-quality distributed and ML systems including real-time WebSocket Chess Platform, Movie Maverick recommendation engine, and EmotionAI computer vision pipeline.",
             category: "Achievement",
-            issuer: "Personal Portfolio",
+            issuer: "Engineering Portfolio",
             year: "2024-2025"
         },
         {
             icon: <FaGithub />,
             title: "Active Open Source Contributor",
-            description: "Maintaining 50+ GitHub repositories with consistent contributions. Projects span AI/ML, web development, and data science tooling.",
+            description: "Maintaining 50+ GitHub repositories with consistent contributions. Projects span Data Science, distributed systems, machine learning, and developer tooling.",
             category: "Contribution",
             issuer: "GitHub",
             year: "Ongoing"
@@ -69,7 +69,7 @@ const Achievements = () => {
                 variants={fadeIn("", "", 0.1, 1)}
                 className="achievements-description"
             >
-                Concrete milestones from my journey in AI/ML engineering and full-stack development —
+                Concrete milestones from my journey in Data Science, ML engineering, and distributed systems —
                 backed by certifications, metrics, and real project outcomes.
             </motion.p>
 

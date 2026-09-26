@@ -9,17 +9,26 @@ const Experience = () => {
     const timeline = [
         {
             year: "2023 - Present",
-            title: "B.Tech in Computer Science",
+            title: "B.Tech in Computer Science & Engineering (Data Science)",
             institution: "IILM University, Greater Noida",
-            description: "4th year student with specialization in AI/ML and Full Stack Development. Core coursework: Machine Learning, Deep Learning, Data Structures & Algorithms, Computer Vision, NLP.",
-            highlights: ["AI/ML Specialization", "DSA Proficiency", "Research Projects"],
+            description: "B.Tech student in Computer Science & Engineering with specialization in Data Science and Full Stack Development. Coursework & practical focus: Data Science, Machine Learning, Deep Learning, Distributed Systems, Data Structures & Algorithms, Computer Vision, Big Data Analysis.",
+            highlights: ["Data Science Specialization", "DSA Proficiency", "Distributed Systems & ML"],
             icon: <FaGraduationCap />,
             type: "education"
         },
         {
             year: "2025",
-            title: "AI Agent & LLM Development",
-            institution: "Advanced Projects",
+            title: "Real-Time Systems & Computer Vision",
+            institution: "Flagship Engineering Projects",
+            description: "Engineered real-time distributed platforms: Chess Platform with authoritative WebSocket state synchronization and Redis recovery, plus EmotionAI low-latency facial recognition streaming at 20+ FPS via FastAPI and OpenCV.",
+            highlights: ["WebSockets & Redis", "Computer Vision (DeepFace)", "Sub-10ms Latency"],
+            icon: <FaServer />,
+            type: "project"
+        },
+        {
+            year: "2024 - 2025",
+            title: "AI Agents & LLM Development",
+            institution: "Autonomous AI Projects",
             description: "Built production-grade AI agents including an autonomous Data Analyst Agent with natural language query support and an LLM-powered Code Review Assistant that catches 78% of common anti-patterns.",
             highlights: ["LLM Integration", "AI Agents", "Production Deployment"],
             icon: <FaBrain />,
@@ -27,29 +36,20 @@ const Experience = () => {
         },
         {
             year: "2024",
-            title: "Deep Learning & ML Engineering",
-            institution: "Research & Development",
-            description: "Developed LSTM-based Stock Market Predictor achieving 87.3% directional accuracy. Built Customer Churn Prediction system with 92% recall using ensemble methods and SHAP explainability.",
-            highlights: ["LSTM Networks", "87.3% Accuracy", "SHAP Explainability"],
-            icon: <FaRocket />,
-            type: "project"
-        },
-        {
-            year: "2024",
-            title: "Recommendation Systems & Data Science",
-            institution: "AI/ML Projects",
-            description: "Engineered a hybrid Movie Recommendation System using SVD matrix factorization and TF-IDF content analysis, solving the cold-start problem with a 34% error reduction over baseline approaches.",
-            highlights: ["SVD & TF-IDF", "Hybrid Models", "Cold-Start Solution"],
+            title: "Recommendation Engines & Data Science",
+            institution: "Movie Maverick & ML Systems",
+            description: "Engineered Movie Maverick, a hybrid movie recommendation platform using SVD matrix factorization, TF-IDF content analysis, and Redis caching — reducing cold-start prediction error by 34% and cutting response times to <85ms.",
+            highlights: ["Hybrid SVD + TF-IDF", "Cold-Start Solution", "Redis Caching"],
             icon: <FaDatabase />,
             type: "project"
         },
         {
             year: "2023 - 2024",
-            title: "Full Stack Development",
-            institution: "Web & Mobile Projects",
-            description: "Built a real-time multiplayer Chess Platform with Stockfish AI integration using TypeScript and Bun. Mastered React, Django, FastAPI, and Flutter for end-to-end application development.",
-            highlights: ["React & TypeScript", "Django & FastAPI", "Real-time Systems"],
-            icon: <FaCode />,
+            title: "Deep Learning & Predictive Modeling",
+            institution: "ML Engineering Projects",
+            description: "Developed LSTM stock market predictor achieving 87.3% directional accuracy with walk-forward validation. Built Customer Churn system with 92% recall using XGBoost, SMOTE, and SHAP explainability.",
+            highlights: ["LSTM Networks", "87.3% Accuracy", "SHAP Explainability"],
+            icon: <FaRocket />,
             type: "project"
         }
     ];

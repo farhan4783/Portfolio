@@ -37,19 +37,17 @@ const About = () => {
                 variants={fadeIn("", "", 0.1, 1)}
                 className="about-description"
             >
-                My developer journey is fueled by <span className="gradient-text">curiosity</span> and
-                the love of building things from zero. I started coding by experimenting, breaking things,
-                and learning how systems actually work—not just how to use them.
+                Currently pursuing my <span className="gradient-text">B.Tech in Computer Science & Engineering with a specialization in Data Science</span> at IILM University.
+                My developer journey is fueled by curiosity, first-principles thinking, and the drive to build systems from the ground up — not just stitching libraries together.
             </motion.p>
 
             <motion.p
                 variants={fadeIn("", "", 0.2, 1)}
                 className="about-description"
             >
-                I'm deeply interested in <span className="gradient-text">automation, AI, and backend development</span>,
-                where logic meets real-world impact. I enjoy designing systems that save time, reduce manual work,
-                and scale efficiently. For me, coding isn't just about writing lines of code—it's about creating
-                solutions that feel smart and intentional.
+                I specialize in <span className="gradient-text">distributed systems, machine learning engineering, and full-stack architecture</span>.
+                Whether it's synchronizing millisecond-level state in multiplayer WebSocket platforms, mitigating cold starts with hybrid recommendation algorithms,
+                or streaming 20+ FPS computer vision models with sub-45ms latency, I focus on building reliable software that scales under real workloads.
             </motion.p>
 
             <motion.div
@@ -60,6 +58,7 @@ const About = () => {
                     href={resumeUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    download="Mohd_Farhan_Resume.pdf"
                     className="about-resume-btn"
                 >
                     <FaDownload style={{ marginRight: '8px' }} />
